@@ -17,3 +17,8 @@ Geoff Crews
 #include <iostream>
 #include "Simulation.h"
 
+// Main Function
+int main(int argc, char * argv[])
+{
+
+}
