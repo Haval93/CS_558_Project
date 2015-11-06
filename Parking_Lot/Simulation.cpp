@@ -31,7 +31,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	// Open File
 	simulationInput.open(argv[1]);
 
-	while (simulationInput.is_open && simulationInput.good())
+	while (simulationInput.is_open() && simulationInput.good())
 	{
 		simulationInput >> test;
 	}
