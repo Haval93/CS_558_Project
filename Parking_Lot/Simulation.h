@@ -26,6 +26,9 @@ Geoff Crews
 class Simulation_Information
 {
 public:
+	int te;
+
+	/////////////////////////////////////////////////////////
 	// Default Constructor. Initialization Method
 	Simulation_Information();
 	// Overloaded Constructor. Overloaded Initialization Method
