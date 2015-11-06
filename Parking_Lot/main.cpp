@@ -17,3 +17,22 @@ Geoff Crews
 #include <iostream>
 #include "Simulation.h"
 
+// Main Function
+int main(int argc, char * argv[])
+{
+	// Create A Simulation Instance
+	Simulation_Information firstSimulation;
+
+	// Check For Argument Count
+	if (argc > 1)
+	{
+		Simulation_Information(argc, argv);
+	}
+	else
+	{
+		Simulation_Information();
+	}
+
+
+	return 0;
+}

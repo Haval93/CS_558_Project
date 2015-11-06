@@ -13,66 +13,84 @@ Geoff Crews
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <fstream>
 #include "Simulation.h"
 
-// Default Initialize Method. Initializes All Simulation Variables
-void Simulation::initialize(int argumentCount, char * fileNames[])
+// Default Constructor. Initializes
+Simulation_Information::Simulation_Information()
 {
 
+}
+// Overloaded Constructor. Initializes 
+Simulation_Information::Simulation_Information(int argc, char * argv[])
+{
+	int test;
+	// Create A File Instance
+	std::fstream simulationInput;
+
+	// Open File
+	simulationInput.open(argv[1]);
+
+	while (simulationInput.is_open && simulationInput.good())
+	{
+		simulationInput >> test;
+	}
+
+	std::cout << "This is a test to see the number: " << test << std::endl;
 }
 
 
 // Timing Method. Used To Determined Next Event
-void Simulation::timing(void)
+void Simulation_Information::timing(void)
 {
 
 }
 
 
 // Arrival Function For Entrance Gate
-void Simulation::entranceArrive(void)
+void Simulation_Information::entranceArrive(void)
 {
 
 }
 
 
 // Depart Function For Entrance Gate
-void Simulation::entranceDepart(void)
+void Simulation_Information::entranceDepart(void)
 {
 
 }
 
 
 // Arrival Function For Exit Gate
-void Simulation::exitArrive(void)
+void Simulation_Information::exitArrive(void)
 {
 
 }
 
 
 // Depart Function For Exit Gate
-void Simulation::exitDepart(void)
+void Simulation_Information::exitDepart(void)
 {
 
 }
 
 
 // Function to handle car leaving lot event
-void Simulation::leaveSpot(void)
+void Simulation_Information::leaveSpot(void)
 {
 
 }
 
 
 // Update Average Time Stats
-void Simulation::updateAverageTimeStats(void)
+void Simulation_Information::updateAverageTimeStats(void)
 {
 
 }
 
 
 // Report Statisical Data
-void Simulation::report(void)
+void Simulation_Information::report(void)
 {
 
 }
@@ -91,9 +109,4 @@ float massDensityFunction()
 	// Return F(X) = 72(1-X). We should be getting from 0-72
 	return 72 * (1 - randomNumber);
 
-}
-
-void Simulation Simulation::initialize(int argumentCount, char * fileNames[])
-{
-	return void Simulation();
 }

@@ -23,27 +23,29 @@ Geoff Crews
 #define EMPTY 1.0e+30
 
 // Simulation Info Structure
-class Simulation
+class Simulation_Information
 {
 public:
-	// Default Initialize Method. Initializes All Simulation Variables
-	void Simulation initialize(int argumentCount, char * fileNames[]);
+	// Default Constructor. Initialization Method
+	Simulation_Information();
+	// Overloaded Constructor. Overloaded Initialization Method
+	Simulation_Information(int argc, char * argv[]);
 	// Timing Method. Used To Determined Next Event
-	void Simulation timing(void);
+	void timing(void);
 	// Arrival Function For Entrance Gate
-	void Simulation entranceArrive(void);
+	void entranceArrive(void);
 	// Depart Function For Entrance Gate
-	void Simulation entranceDepart(void);
+	void entranceDepart(void);
 	// Arrival Function For Exit Gate
-	void Simulation exitArrive(void);
+	void exitArrive(void);
 	// Depart Function For Exit Gate
-	void Simulation exitDepart(void);
+	void exitDepart(void);
 	// Function to handle car leaving lot event
-	void Simulation leaveSpot(void);
+	void leaveSpot(void);
 	// Update Average Time Stats
-	void Simulation updateAverageTimeStats(void);
+	void updateAverageTimeStats(void);
 	// Report Statisical Data
-	void Simulation report(void);
+	void report(void);
 };
 
 // Structure For All Automobile Information
