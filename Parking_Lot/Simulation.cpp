@@ -19,7 +19,12 @@ Geoff Crews
 // Default Constructor. Initializes
 Simulation_Information::Simulation_Information()
 {
-
+	parkingSpots = 60;
+	numberOfCars = 60;
+	arrivalRate = 60;
+	parkIntervalHigh = 120;
+	parkIntervalLow = 60;
+	exitGate = 60;
 }
 // Overloaded Constructor. Initializes 
 Simulation_Information::Simulation_Information(int argc, char * argv[])

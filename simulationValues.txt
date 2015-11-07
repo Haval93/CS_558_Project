@@ -1,1 +1,6 @@
-123456789
+50 	//int parkingSpots;
+100	//int numberOfCars;
+60	//float arrivalRate;
+120	//float parkIntervalHigh;
+60	//float parkIntervalLow;
+60	//float exitGate;

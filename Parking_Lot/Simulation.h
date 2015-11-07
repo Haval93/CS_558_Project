@@ -26,7 +26,13 @@ Geoff Crews
 class Simulation_Information
 {
 public:
-	int te;
+	int parkingSpots;
+	int numberOfCars;
+	float arrivalRate;
+	float parkIntervalHigh;
+	float parkIntervalLow;
+	float exitGate;
+
 
 	/////////////////////////////////////////////////////////
 	// Default Constructor. Initialization Method
