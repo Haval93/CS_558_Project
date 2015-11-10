@@ -14,6 +14,7 @@ Geoff Crews
 #include <math.h>
 #include <fstream>
 #include <vector>
+#include <queue>
 
 #ifndef Simulation
 #define Simulation
@@ -49,6 +50,10 @@ public:
 	// Will Be A Constant Size 6 For Size of All Event Handling Functions for Simulation.  
 	int timeOfNextEvent[NUMOFEVENTS];
 
+	// Entrace And Exit Queue
+	std::queue <Car> entranceQueue;
+	std::queue <Car> exitQueue;
+
 	/**********************************************/
 	// Overloaded Constructor. Overloaded Initialization Method
 	Simulation_Information(int argc, char * argv[]);
@@ -72,7 +77,7 @@ public:
 	void report(void);
 };
 
-// Structure For All Automobile Information
+// Car Class For All Automobile Information
 class Car
 {
 public:
