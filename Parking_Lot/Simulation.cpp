@@ -143,7 +143,6 @@ void Simulation_Information::chooseNextEvent(void)
 		break;
 	case 3:
 		// Leaving lot
-		leftLot++;
 		leaveSpot();
 		break;
 	case 4:
