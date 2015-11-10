@@ -20,19 +20,20 @@ Geoff Crews
 // Main Function
 int main(int argc, char * argv[])
 {
-	// Create A Simulation Instance
-	Simulation_Information firstSimulation;
-
 	// Random See With Time. Need For Random Variates
 	srand(static_cast<unsigned> (time(NULL)));
 
-	// Check For Argument Count
-	if (argc > 1)
-		Simulation_Information(argc, argv);
-	else
+	// Create A Simulation Instance
+	Simulation_Information firstSimulation = Simulation_Information(argc, argv);
+
+	// Simulation Loop. Run Simulation Until Exit Parameter is met.
+	/*while (firstSimulation.numberOfCustomersDelayed < firstSimulation.totalNumberOfCustomers)
 	{
-		Simulation_Information();
-	}
+		// Call Timing, Arrival, Exit, and Report Functions within simulation class. 
+		// Will either be switch case or something else?
+	}*/
+
+	std::cout << "Test to see if update reflected instance of class: " << firstSimulation.totalNumberOfCustomers << std::endl;
 
 	return 0;
 }

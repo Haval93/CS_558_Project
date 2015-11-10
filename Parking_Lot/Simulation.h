@@ -39,9 +39,8 @@ public:
 	// First is a parking lot for spots
 	float parkingLotSpots[parkingSpots];
 
+
 	/**********************************************/
-	// Default Constructor. Initialization Method
-	Simulation_Information();
 	// Overloaded Constructor. Overloaded Initialization Method
 	Simulation_Information(int argc, char * argv[]);
 	// Timing Method. Used To Determined Next Event

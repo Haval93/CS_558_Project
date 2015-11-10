@@ -16,17 +16,49 @@ Geoff Crews
 #include <fstream>
 #include "Simulation.h"
 
-// Default Constructor. Initializes
-Simulation_Information::Simulation_Information()
+// Constructor that Initializes all Values
+Simulation_Information::Simulation_Information(int argc, char * argv[])
 {
-	// Default Initialization Variables. Will be Read In Exactly This Order
-	numberOfCars = 60;
-	arrivalRate = 60;
-	parkIntervalHigh = 120;
-	parkIntervalLow = 60;
-	exitGate = 60;
-	entranceQueueSize = 500;
-	exitQueueSize = 500;
+	// Check Argument Count 
+	if (argc > 1)
+	{
+		// Create A File Instance
+		std::fstream simulationInput;
+
+		// Open File
+		simulationInput.open(argv[1]);
+
+		while (simulationInput.is_open() && simulationInput.good())
+		{
+			// Number of cars
+			simulationInput >> numberOfCars;
+			// Arrival Rate
+			simulationInput >> arrivalRate;
+			// Interarrival High Rate
+			simulationInput >> parkIntervalHigh;
+			// Interarrival Low Rate
+			simulationInput >> parkIntervalLow;
+			// Exit Gate
+			simulationInput >> exitGate;
+			// Entrace Queue Size
+			simulationInput >> entranceQueueSize;
+			// Exit Queue Size 
+			simulationInput >> exitQueueSize;
+		}
+		// Close File 
+		simulationInput.close();
+	}
+	else
+	{
+		// Default Initialization Variables. Will be Read In Exactly This Order
+		numberOfCars = 60;
+		arrivalRate = 60;
+		parkIntervalHigh = 120;
+		parkIntervalLow = 60;
+		exitGate = 60;
+		entranceQueueSize = 500;
+		exitQueueSize = 500;
+	}
 
 	// Statistical Counters. More Will Be Added
 	nextEventType = 0;
@@ -42,50 +74,6 @@ Simulation_Information::Simulation_Information()
 	// Make Each Parking Spot Null or 0. We will add or replace the spot with zero after the spot is taken. 
 	for (int i = 0; i < parkingSpots; i++)
 		parkingLotSpots[i] = EMPTY;
-
-}
-// Overloaded Constructor. Initializes 
-Simulation_Information::Simulation_Information(int argc, char * argv[])
-{
-	// Create A File Instance
-	std::fstream simulationInput;
-
-	// Open File
-	simulationInput.open(argv[1]);
-
-	while (simulationInput.is_open() && simulationInput.good())
-	{
-		// Number of cars
-		simulationInput >> numberOfCars;
-		// Arrival Rate
-		simulationInput >> arrivalRate;
-		// Interarrival High Rate
-		simulationInput >> parkIntervalHigh;
-		// Interarrival Low Rate
-		simulationInput >> parkIntervalLow;
-		// Exit Gate
-		simulationInput >> exitGate;
-		// Entrace Queue Size
-		simulationInput >> entranceQueueSize;
-		// Exit Queue Size 
-		simulationInput >> exitQueueSize;
-	}
-
-	// Close File 
-	simulationInput.close();
-
-
-	// Statistical Counters. More Will Be Added
-	nextEventType = 0;
-	numberOfCustomersDelayed = 0;
-	totalNumberOfCustomers = 0;
-	numberOfEvents = 0;
-	numberInEntranceQueue = 0;
-	numberInExitQueue = 0;
-	entranceServerStatus = 0;
-	exitServerStatus = 0;
-	serviceTime = 0;
-
 }
 
 
