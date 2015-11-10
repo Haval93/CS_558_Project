@@ -33,7 +33,7 @@ public:
 	/**********************************************/
 	// Parking Spots Has To Be Constant
 	int parkingSpots, numberOfCars, entranceQueueSize, exitQueueSize;
-	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate;
+	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate, simulationTime;
 
 	// Statistical Counter Variables
 	/**********************************************/

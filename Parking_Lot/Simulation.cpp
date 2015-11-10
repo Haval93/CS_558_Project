@@ -75,6 +75,27 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	// Make Each Parking Spot Null or 0. We will add or replace the spot with zero after the spot is taken. 
 	for (int i = 0; i < parkingSpots; i++)
 		parkingLotSpots[i] = EMPTY;
+
+	exitServerStatus = IDLE;
+	entranceServerStatus = IDLE;
+
+	/* Initialize event list.  Since no customers are present, the departure
+	(service completion) event is eliminated from consideration. */
+
+	// First arrival
+	timeOfNextEvent[1] = simulationTime + massDensityFunction();
+	// Depart entrance queue
+	timeOfNextEvent[2] = EMPTY;
+	// Leave parking space
+	timeOfNextEvent[3] = EMPTY;
+	// Arrive at exit queue
+	timeOfNextEvent[4] = EMPTY;
+	timeOfNextEvent[5] = EMPTY;
+
+	// Write report heading and input parameters.
+	printf("Single-server queueing system\n\n");
+	printf("Number of customers%14d\n\n", totalNumberOfCustomers);
+
 }
 
 
