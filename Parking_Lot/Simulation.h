@@ -28,13 +28,14 @@ class Simulation_Information
 public:
 	int parkingSpots;
 	int numberOfCars;
+	int entranceQueueSize;
+	int exitQueueSize;
 	float arrivalRate;
 	float parkIntervalHigh;
 	float parkIntervalLow;
 	float exitGate;
 
-
-	/////////////////////////////////////////////////////////
+	/**********************************************/
 	// Default Constructor. Initialization Method
 	Simulation_Information();
 	// Overloaded Constructor. Overloaded Initialization Method

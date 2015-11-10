@@ -19,17 +19,21 @@ Geoff Crews
 // Default Constructor. Initializes
 Simulation_Information::Simulation_Information()
 {
+	// Default Initialization Variables. Will be Read In Exactly This Order
 	parkingSpots = 60;
 	numberOfCars = 60;
 	arrivalRate = 60;
 	parkIntervalHigh = 120;
 	parkIntervalLow = 60;
 	exitGate = 60;
+	entranceQueueSize = 500;
+	exitQueueSize = 500;
+
+
 }
 // Overloaded Constructor. Initializes 
 Simulation_Information::Simulation_Information(int argc, char * argv[])
 {
-	int test;
 	// Create A File Instance
 	std::fstream simulationInput;
 
@@ -38,10 +42,26 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 
 	while (simulationInput.is_open() && simulationInput.good())
 	{
-		simulationInput >> test;
+		// Get Parking Spots
+		simulationInput >> parkingSpots;
+		// Number of cars
+		simulationInput >> numberOfCars;
+		// Arrival Rate
+		simulationInput >> arrivalRate;
+		// Interarrival High Rate
+		simulationInput >> parkIntervalHigh;
+		// Interarrival Low Rate
+		simulationInput >> parkIntervalLow;
+		// Exit Gate
+		simulationInput >> exitGate;
+		// Entrace Queue Size
+		simulationInput >> entranceQueueSize;
+		// Exit Queue Size 
+		simulationInput >> exitQueueSize;
 	}
 
-	std::cout << "This is a test to see the number: " << test << std::endl;
+
+
 }
 
 
