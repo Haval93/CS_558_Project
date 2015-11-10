@@ -9,11 +9,6 @@ Sami Badra
 Geoff Crews
 */
 
-#include <iostream>
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
-#include <fstream>
 #include "Simulation.h"
 
 // Constructor that Initializes all Values
@@ -30,6 +25,8 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 
 		while (simulationInput.is_open() && simulationInput.good())
 		{
+			// Number of Parking Spots
+			simulationInput >> parkingSpots;
 			// Number of cars
 			simulationInput >> numberOfCars;
 			// Arrival Rate
@@ -51,6 +48,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	else
 	{
 		// Default Initialization Variables. Will be Read In Exactly This Order
+		parkingSpots = 60;
 		numberOfCars = 60;
 		arrivalRate = 60;
 		parkIntervalHigh = 120;
@@ -70,6 +68,9 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	entranceServerStatus = 0;
 	exitServerStatus = 0;
 	serviceTime = 0;
+
+	// Make Parking Spot Array The Correct Size
+	parkingLotSpots.resize(parkingSpots);
 
 	// Make Each Parking Spot Null or 0. We will add or replace the spot with zero after the spot is taken. 
 	for (int i = 0; i < parkingSpots; i++)

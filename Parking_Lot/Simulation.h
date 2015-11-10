@@ -8,6 +8,13 @@ Sami Badra
 Geoff Crews
 */
 
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+#include <fstream>
+#include <vector>
+
 #ifndef Simulation
 #define Simulation
 
@@ -16,7 +23,7 @@ Geoff Crews
 // Mnemonic For Service IDLE
 #define IDLE 0  
 // Empty Spot
-#define EMPTY 1.0e+30
+#define EMPTY (1.0e+30)
 
 // Simulation Info Structure
 class Simulation_Information
@@ -25,8 +32,7 @@ public:
 	// Variables For Simulation
 	/**********************************************/
 	// Parking Spots Has To Be Constant
-	const static int parkingSpots = 100;
-	int numberOfCars, entranceQueueSize, exitQueueSize;
+	int parkingSpots, numberOfCars, entranceQueueSize, exitQueueSize;
 	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate;
 
 	// Statistical Counter Variables
@@ -35,10 +41,8 @@ public:
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus,
 		exitServerStatus, serviceTime;
 
-	// Arrays and Queues Need
-	// First is a parking lot for spots
-	float parkingLotSpots[parkingSpots];
-
+	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
+	std::vector <float> parkingLotSpots;
 
 	/**********************************************/
 	// Overloaded Constructor. Overloaded Initialization Method

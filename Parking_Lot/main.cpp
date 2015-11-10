@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
 	/*while (firstSimulation.numberOfCustomersDelayed < firstSimulation.totalNumberOfCustomers)
 	{
 		// Call Timing, Arrival, Exit, and Report Functions within simulation class. 
-		// Will either be switch case or something else?
+		// Will either be switch case or something else.
 	}*/
 
 	return 0;
