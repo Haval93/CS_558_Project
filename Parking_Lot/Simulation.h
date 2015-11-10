@@ -11,10 +11,6 @@ Geoff Crews
 #ifndef Simulation
 #define Simulation
 
-// First Queue Limit 
-// #define Q_LIMIT 500  
-// Second Queue Limit
-// #define Q_LIMIT2 500
 // Mnemonic For Server Busy
 #define BUSY 1  
 // Mnemonic For Service IDLE
@@ -26,14 +22,22 @@ Geoff Crews
 class Simulation_Information
 {
 public:
-	int parkingSpots;
-	int numberOfCars;
-	int entranceQueueSize;
-	int exitQueueSize;
-	float arrivalRate;
-	float parkIntervalHigh;
-	float parkIntervalLow;
-	float exitGate;
+	// Variables For Simulation
+	/**********************************************/
+	// Parking Spots Has To Be Constant
+	const static int parkingSpots = 100;
+	int numberOfCars, entranceQueueSize, exitQueueSize;
+	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate;
+
+	// Statistical Counter Variables
+	/**********************************************/
+	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers, numberOfEvents,
+		numberInEntranceQueue, numberInExitQueue, entranceServerStatus,
+		exitServerStatus, serviceTime;
+
+	// Arrays and Queues Need
+	// First is a parking lot for spots
+	float parkingLotSpots[parkingSpots];
 
 	/**********************************************/
 	// Default Constructor. Initialization Method

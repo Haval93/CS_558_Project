@@ -20,7 +20,6 @@ Geoff Crews
 Simulation_Information::Simulation_Information()
 {
 	// Default Initialization Variables. Will be Read In Exactly This Order
-	parkingSpots = 60;
 	numberOfCars = 60;
 	arrivalRate = 60;
 	parkIntervalHigh = 120;
@@ -29,6 +28,20 @@ Simulation_Information::Simulation_Information()
 	entranceQueueSize = 500;
 	exitQueueSize = 500;
 
+	// Statistical Counters. More Will Be Added
+	nextEventType = 0;
+	numberOfCustomersDelayed = 0;
+	totalNumberOfCustomers = 0;
+	numberOfEvents = 0;
+	numberInEntranceQueue = 0;
+	numberInExitQueue = 0;
+	entranceServerStatus = 0;
+	exitServerStatus = 0;
+	serviceTime = 0;
+
+	// Make Each Parking Spot Null or 0. We will add or replace the spot with zero after the spot is taken. 
+	for (int i = 0; i < parkingSpots; i++)
+		parkingLotSpots[i] = EMPTY;
 
 }
 // Overloaded Constructor. Initializes 
@@ -42,8 +55,6 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 
 	while (simulationInput.is_open() && simulationInput.good())
 	{
-		// Get Parking Spots
-		simulationInput >> parkingSpots;
 		// Number of cars
 		simulationInput >> numberOfCars;
 		// Arrival Rate
@@ -60,7 +71,20 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 		simulationInput >> exitQueueSize;
 	}
 
+	// Close File 
+	simulationInput.close();
 
+
+	// Statistical Counters. More Will Be Added
+	nextEventType = 0;
+	numberOfCustomersDelayed = 0;
+	totalNumberOfCustomers = 0;
+	numberOfEvents = 0;
+	numberInEntranceQueue = 0;
+	numberInExitQueue = 0;
+	entranceServerStatus = 0;
+	exitServerStatus = 0;
+	serviceTime = 0;
 
 }
 

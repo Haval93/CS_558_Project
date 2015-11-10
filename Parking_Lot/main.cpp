@@ -23,17 +23,16 @@ int main(int argc, char * argv[])
 	// Create A Simulation Instance
 	Simulation_Information firstSimulation;
 
+	// Random See With Time. Need For Random Variates
+	srand(static_cast<unsigned> (time(NULL)));
+
 	// Check For Argument Count
 	if (argc > 1)
-	{
 		Simulation_Information(argc, argv);
-	}
 	else
 	{
 		Simulation_Information();
 	}
-
-
 
 	return 0;
 }
