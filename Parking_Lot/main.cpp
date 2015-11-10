@@ -33,7 +33,5 @@ int main(int argc, char * argv[])
 		// Will either be switch case or something else?
 	}*/
 
-	std::cout << "Test to see if update reflected instance of class: " << firstSimulation.totalNumberOfCustomers << std::endl;
-
 	return 0;
 }
