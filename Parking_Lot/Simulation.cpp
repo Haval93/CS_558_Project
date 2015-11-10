@@ -95,7 +95,31 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 // Timing Method. Used To Determined Next Event
 void Simulation_Information::timing(void)
 {
+	// MinTimeUntilNextEvent
+	float min_time_next_event = 1.0e+29;
 
+	// Set to 0 until an event is chosen
+	nextEventType = 0;
+
+	// Determine the event type of the next event to occur.
+	for (int i = 1; i <= numberOfEvents; ++i) // Iterate through all event types
+		if (timeOfNextEvent[i] < min_time_next_event) // Find smallest time
+		{
+			min_time_next_event = timeOfNextEvent[i];
+			nextEventType = i; // Next event is event with smallest time
+		}
+
+	// Check to see whether the event list is empty.
+	// If all times of next events are EMPTY no event is scheduled
+	if (nextEventType == 0)
+	{
+		// The event list is empty, so stop the simulation.
+		printf("\nEvent list empty at time %f", simulationTime);
+		exit(1);
+	}
+
+	// The event list is not empty, so advance the simulation clock.
+	simulationTime = min_time_next_event;
 }
 
 

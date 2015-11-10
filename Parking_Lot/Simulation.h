@@ -25,6 +25,7 @@ Geoff Crews
 // Empty Spot
 #define EMPTY (1.0e+30)
 
+
 // Simulation Info Structure
 class Simulation_Information
 {
@@ -40,12 +41,14 @@ public:
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus,
 		exitServerStatus, serviceTime;
 
+	const static int NUMOFEVENTS = 6;
+
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;
 
 	// Time of Next Array Event That Will Tell Simulation When The Next Simulated Event Is.
 	// Will Be A Constant Size 6 For Size of All Event Handling Functions for Simulation.  
-	int timeOfNextEvent[6];
+	int timeOfNextEvent[NUMOFEVENTS];
 
 	/**********************************************/
 	// Overloaded Constructor. Overloaded Initialization Method
