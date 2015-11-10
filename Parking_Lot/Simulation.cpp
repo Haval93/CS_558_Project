@@ -59,10 +59,10 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	}
 
 	// Statistical Counters.
+	simulationTime = 0.0;
 	nextEventType = 0;
 	numberOfCustomersDelayed = 0;
 	totalNumberOfCustomers = 0;
-	numberOfEvents = 0;
 	numberInEntranceQueue = 0;
 	numberInExitQueue = 0;
 	entranceServerStatus = 0;
@@ -96,30 +96,65 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 void Simulation_Information::timing(void)
 {
 	// MinTimeUntilNextEvent
-	float min_time_next_event = 1.0e+29;
+	float minTimeNextEvent = 1.0e+29;
 
 	// Set to 0 until an event is chosen
 	nextEventType = 0;
 
 	// Determine the event type of the next event to occur.
-	for (int i = 1; i <= numberOfEvents; ++i) // Iterate through all event types
-		if (timeOfNextEvent[i] < min_time_next_event) // Find smallest time
+	// Iterate through all event types
+	for (int i = 1; i < numberOfEvents; ++i)
+	{
+		// Find smallest time
+		if (timeOfNextEvent[i] < minTimeNextEvent) 
 		{
-			min_time_next_event = timeOfNextEvent[i];
-			nextEventType = i; // Next event is event with smallest time
+			minTimeNextEvent = timeOfNextEvent[i];
+			// Next event is event with smallest time
+			nextEventType = i; 
 		}
+	}
 
 	// Check to see whether the event list is empty.
 	// If all times of next events are EMPTY no event is scheduled
 	if (nextEventType == 0)
 	{
 		// The event list is empty, so stop the simulation.
-		printf("\nEvent list empty at time %f", simulationTime);
+		std::cout << "The event list is empty at time: " << simulationTime << std::endl;
 		exit(1);
 	}
 
 	// The event list is not empty, so advance the simulation clock.
-	simulationTime = min_time_next_event;
+	simulationTime = minTimeNextEvent;
+}
+
+
+// Choose Next Event Type Function 
+void Simulation_Information::chooseNextEvent(void)
+{
+	switch (nextEventType)
+	{
+	case 1:
+		// Arrival at entrance queue
+		entranceArrive();
+		break;
+	case 2:
+		// Departure from entrance queue
+		entranceDepart();
+		break;
+	case 3:
+		// Leaving lot
+		leftLot++;
+		leaveSpot();
+		break;
+	case 4:
+		// Arrival at exit queue
+		exitArrive();
+		break;
+	case 5:
+		// Departure from exit queue
+		exitDepart();
+		break;
+	}
 }
 
 

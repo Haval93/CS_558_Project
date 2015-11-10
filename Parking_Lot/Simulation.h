@@ -34,14 +34,13 @@ public:
 	/**********************************************/
 	int parkingSpots, numberOfCars, entranceQueueSize, exitQueueSize;
 	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate, simulationTime, timeOfLastEvent;
+	const static int NUMOFEVENTS = 6;
 
 	// Statistical Counter Variables
 	/**********************************************/
 	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers, numberOfEvents,
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus,
 		exitServerStatus, serviceTime;
-
-	const static int NUMOFEVENTS = 6;
 
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;
@@ -55,6 +54,8 @@ public:
 	Simulation_Information(int argc, char * argv[]);
 	// Timing Method. Used To Determined Next Event
 	void timing(void);
+	// Event Function. Chose next event type
+	void chooseNextEvent(void);
 	// Arrival Function For Entrance Gate
 	void entranceArrive(void);
 	// Depart Function For Entrance Gate

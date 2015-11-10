@@ -27,11 +27,20 @@ int main(int argc, char * argv[])
 	Simulation_Information firstSimulation = Simulation_Information(argc, argv);
 
 	// Simulation Loop. Run Simulation Until Exit Parameter is met.
-	/*while (firstSimulation.numberOfCustomersDelayed < firstSimulation.totalNumberOfCustomers)
+	while (firstSimulation.numberOfCustomersDelayed < firstSimulation.totalNumberOfCustomers)
 	{
-		// Call Timing, Arrival, Exit, and Report Functions within simulation class. 
-		// Will either be switch case or something else.
-	}*/
+		// Timing Function To Determine The Next Event
+		firstSimulation.timing();
+
+		// Update time-average statistical accumulators. 
+		firstSimulation.updateAverageTimeStats();
+
+		// Switch To The Next Event Type Based on Event Type
+		firstSimulation.chooseNextEvent();
+	}
+
+	// Call Report Function
+	firstSimulation.report();
 
 	return 0;
 }
