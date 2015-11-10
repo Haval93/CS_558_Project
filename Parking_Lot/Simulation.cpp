@@ -206,7 +206,71 @@ void Simulation_Information::entranceArrive(void)
 // Depart Function For Entrance Gate
 void Simulation_Information::entranceDepart(void)
 {
+	float delay;
+	int singleCarSearchTime = 0;
 
+	// Check to see whether the queue is empty.
+	if (num_in_q == 0)
+	{
+		/* The queue is empty so make the server idle and eliminate the
+		departure (service completion) event from consideration. */
+		entranceServerStatus = IDLE;
+		time_next_event[2] = EMPTY;
+	}
+	else
+	{
+		/* The queue is nonempty, so decrement the number of customers in
+		queue. */
+		--num_in_q;
+
+		/* Compute the delay of the customer who is beginning service and update
+		the total delay accumulator. */
+		delay = sim_time - entranceQueue[1];
+		total_of_delays += delay;
+
+		/* Increment the number of customers delayed, and schedule departure. */
+		++num_custs_delayed;
+		time_next_event[2] = sim_time + serviceTime;
+
+		/* Move each customer in queue (if any) up one place. */
+		for (i = 1; i <= num_in_q; ++i)
+			entranceQueue[i] = entranceQueue[i + 1];
+	}
+
+	// Enter lot and search for spot
+
+	//parked++; // Increment number of cars parked
+
+	// Choose random spot and check to see if it's empty
+	do
+	{
+		singleCarSearchTime += 3;
+		totalSearchTime += 3;
+		lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (lotSize - 1));
+	} while (lot[lotIndex] <= 1.0e+29); // Try again if spot was taken
+
+	singleCarSearchTime += parked;
+
+	parked++; // Increment number of cars parked
+
+			  // Store departure time in spot
+	lot[lotIndex] = sim_time + singleCarSearchTime + massDensityFunction();
+
+	// Print departure time of spot
+	//printf("Spot %d taken. Departure time: %f seconds. Search time: %d\n", lotIndex, lot[lotIndex], singleCarSearchTime);
+	//cout << "Spot " << left << setw(2) << lotIndex << " taken.   Departure time: " << left << setw(8) << lot[lotIndex] << " seconds.   Search time: " << singleCarSearchTime << endl;
+	cout << "Spot number taken: " << left << setw(2) << lotIndex << "   Departure time in seconds: " << left << setw(8) << lot[lotIndex] << endl;
+
+	// Determine the time of the next car to leave a spot
+	for (i = 0; i <= lotSize - 1; ++i)
+	{
+		if (lot[i] < nextLeaving)
+		{
+			nextLeaving = lot[i];
+			leavingIndex = i;
+			time_next_event[3] = lot[i];
+		}
+	}
 }
 
 
