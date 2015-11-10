@@ -58,7 +58,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 		exitQueueSize = 500;
 	}
 
-	// Statistical Counters. More Will Be Added
+	// Statistical Counters.
 	nextEventType = 0;
 	numberOfCustomersDelayed = 0;
 	totalNumberOfCustomers = 0;
@@ -68,6 +68,8 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	entranceServerStatus = 0;
 	exitServerStatus = 0;
 	serviceTime = 0;
+	exitServerStatus = IDLE;
+	entranceServerStatus = IDLE;
 
 	// Make Parking Spot Array The Correct Size
 	parkingLotSpots.resize(parkingSpots);
@@ -76,12 +78,8 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	for (int i = 0; i < parkingSpots; i++)
 		parkingLotSpots[i] = EMPTY;
 
-	exitServerStatus = IDLE;
-	entranceServerStatus = IDLE;
-
 	/* Initialize event list.  Since no customers are present, the departure
 	(service completion) event is eliminated from consideration. */
-
 	// First arrival
 	timeOfNextEvent[1] = simulationTime + massDensityFunction();
 	// Depart entrance queue
@@ -91,11 +89,6 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	// Arrive at exit queue
 	timeOfNextEvent[4] = EMPTY;
 	timeOfNextEvent[5] = EMPTY;
-
-	// Write report heading and input parameters.
-	printf("Single-server queueing system\n\n");
-	printf("Number of customers%14d\n\n", totalNumberOfCustomers);
-
 }
 
 

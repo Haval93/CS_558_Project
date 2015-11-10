@@ -31,9 +31,8 @@ class Simulation_Information
 public:
 	// Variables For Simulation
 	/**********************************************/
-	// Parking Spots Has To Be Constant
 	int parkingSpots, numberOfCars, entranceQueueSize, exitQueueSize;
-	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate, simulationTime;
+	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate, simulationTime, timeOfLastEvent;
 
 	// Statistical Counter Variables
 	/**********************************************/
@@ -43,6 +42,10 @@ public:
 
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;
+
+	// Time of Next Array Event That Will Tell Simulation When The Next Simulated Event Is.
+	// Will Be A Constant Size 6 For Size of All Event Handling Functions for Simulation.  
+	int timeOfNextEvent[6];
 
 	/**********************************************/
 	// Overloaded Constructor. Overloaded Initialization Method
