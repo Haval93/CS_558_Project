@@ -26,19 +26,16 @@ Geoff Crews
 // Empty Spot
 #define EMPTY (1.0e+30)
 
-
 // Simulation Info Structure
 class Simulation_Information
 {
 public:
 	// Variables For Simulation
-	/**********************************************/
 	int parkingSpots, numberOfCars, entranceQueueSize, exitQueueSize;
 	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate, simulationTime, timeOfLastEvent;
 	const static int NUMOFEVENTS = 6;
 
 	// Statistical Counter Variables
-	/**********************************************/
 	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers, numberOfEvents,
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus,
 		exitServerStatus, serviceTime;
@@ -46,15 +43,16 @@ public:
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;
 
+	// Entrace And Exit Queue
+	std::queue <Car*> entranceQueue;
+	std::queue <Car*> exitQueue;
+	// Car List
+	std::vector <Car*> arrayOfCars;
+
 	// Time of Next Array Event That Will Tell Simulation When The Next Simulated Event Is.
 	// Will Be A Constant Size 6 For Size of All Event Handling Functions for Simulation.  
 	int timeOfNextEvent[NUMOFEVENTS];
 
-	// Entrace And Exit Queue
-	std::queue <Car> entranceQueue;
-	std::queue <Car> exitQueue;
-
-	/**********************************************/
 	// Overloaded Constructor. Overloaded Initialization Method
 	Simulation_Information(int argc, char * argv[]);
 	// Timing Method. Used To Determined Next Event
@@ -77,10 +75,9 @@ public:
 	void report(void);
 };
 
-// Car Class For All Automobile Information
-class Car
+// Car Structure For All Automobile Information
+typedef struct Car
 {
-public:
 	// Variable For Car Number
 	int carNumber;
 	// Variable For Entrance Arrival Time (Enter Queue)
@@ -101,5 +98,6 @@ public:
 
 // Mass Density Function 
 float massDensityFunction();
+
 
 #endif

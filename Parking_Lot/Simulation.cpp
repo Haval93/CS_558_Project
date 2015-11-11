@@ -78,10 +78,20 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	for (int i = 0; i < parkingSpots; i++)
 		parkingLotSpots[i] = EMPTY;
 
+	// Resize The Vector To The Number Of Cars in the simulation
+	// arrayOfCars.resize(numberOfCars);
+
+	// Initialization the Cars into the car arrays
+	// for (int i = 0; i < numberOfCars; i++)
+		// arrayOfCars[i] = new Car;
+
 	/* Initialize event list.  Since no customers are present, the departure
 	(service completion) event is eliminated from consideration. */
 	// First arrival
 	timeOfNextEvent[1] = simulationTime + massDensityFunction();
+	// Car Instance For First Class
+	Car *firstCar = new Car;
+	firstCar->entranceArrivalTime = timeOfNextEvent[1];
 	// Depart entrance queue
 	timeOfNextEvent[2] = EMPTY;
 	// Leave parking space
@@ -163,10 +173,12 @@ void Simulation_Information::chooseNextEvent(void)
 // Arrival Function For Entrance Gate
 void Simulation_Information::entranceArrive(void)
 {
-	// Schedule next arrival.
+	/*// Schedule next arrival.
 	timeOfNextEvent[1] = simulationTime + massDensityFunction();
 
-	if (entranceServerStatus == BUSY) // Check to see whether server is busy.
+
+	// Check to see whether server is busy.
+	if (entranceServerStatus == BUSY) 
 	{
 		// Server is busy, so increment number of customers in queue.
 		++num_in_q;
@@ -174,21 +186,21 @@ void Simulation_Information::entranceArrive(void)
 		// Check to see whether an overflow condition exists.
 		if (num_in_q > Q_LIMIT)
 		{
-			/* The queue has overflowed, so stop the simulation. */
+			
 			printf("\nOverflow of the array time_arrival at");
 			printf(" time %f", sim_time);
 			exit(2);
 		}
 
-		/* There is still room in the queue, so store the time of arrival of the
-		arriving customer at the (new) end of time_arrival. */
+		// There is still room in the queue, so store the time of arrival of the
+		// arriving customer at the (new) end of time_arrival. 
 		entranceQueue[num_in_q] = sim_time;
 	}
 	else // Server idle
 	{
-		/* Server is idle, so arriving customer has a delay of zero.  (The
-		following two statements are for program clarity and do not affect
-		the results of the simulation.) */
+		// Server is idle, so arriving customer has a delay of zero.  (The
+		// following two statements are for program clarity and do not affect
+		// the results of the simulation.)
 		delay = 0.0;
 		total_of_delays += delay;
 
@@ -199,6 +211,7 @@ void Simulation_Information::entranceArrive(void)
 		// Schedule a departure (service completion).
 		time_next_event[2] = sim_time + serviceTime;
 	}
+	*/
 
 }
 
@@ -206,33 +219,33 @@ void Simulation_Information::entranceArrive(void)
 // Depart Function For Entrance Gate
 void Simulation_Information::entranceDepart(void)
 {
-	float delay;
+	/*float delay;
 	int singleCarSearchTime = 0;
 
 	// Check to see whether the queue is empty.
 	if (num_in_q == 0)
 	{
-		/* The queue is empty so make the server idle and eliminate the
-		departure (service completion) event from consideration. */
+		// The queue is empty so make the server idle and eliminate the
+		// departure (service completion) event from consideration. 
 		entranceServerStatus = IDLE;
 		time_next_event[2] = EMPTY;
 	}
 	else
 	{
-		/* The queue is nonempty, so decrement the number of customers in
-		queue. */
+		// The queue is nonempty, so decrement the number of customers in
+		// queue. 
 		--num_in_q;
 
-		/* Compute the delay of the customer who is beginning service and update
-		the total delay accumulator. */
+		// Compute the delay of the customer who is beginning service and update
+		// the total delay accumulator. 
 		delay = sim_time - entranceQueue[1];
 		total_of_delays += delay;
 
-		/* Increment the number of customers delayed, and schedule departure. */
+		// Increment the number of customers delayed, and schedule departure. 
 		++num_custs_delayed;
 		time_next_event[2] = sim_time + serviceTime;
 
-		/* Move each customer in queue (if any) up one place. */
+		// Move each customer in queue (if any) up one place. 
 		for (i = 1; i <= num_in_q; ++i)
 			entranceQueue[i] = entranceQueue[i + 1];
 	}
@@ -271,6 +284,7 @@ void Simulation_Information::entranceDepart(void)
 			time_next_event[3] = lot[i];
 		}
 	}
+	*/
 }
 
 
