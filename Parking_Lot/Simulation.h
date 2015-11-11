@@ -37,8 +37,9 @@ public:
 
 	// Statistical Counter Variables
 	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers, numberOfEvents,
-		numberInEntranceQueue, numberInExitQueue, entranceServerStatus,
-		exitServerStatus, serviceTime;
+		numberInEntranceQueue, numberInExitQueue, entranceServerStatus, leavingIndex,
+		exitServerStatus, maxEntranceQueueSize, maxExitQueueSize, totalSearchTime, parked;
+	float totalEntranceQueueDelayTime, totalExitQueueDelayTime, nextLeavingCar;
 
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;
@@ -73,6 +74,8 @@ public:
 	void updateAverageTimeStats(void);
 	// Report Statisical Data
 	void report(void);
+	// Determines what parkingspot is leaving next
+	void leaveSpot(void);
 };
 
 // Car Structure For All Automobile Information
