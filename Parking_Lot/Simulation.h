@@ -26,14 +26,36 @@ Geoff Crews
 // Empty Spot
 #define EMPTY (1.0e+30)
 
+// Car Structure For All Automobile Information
+class Car
+{
+public:
+	int carNumber;
+	// Variable For Entrance Arrival Time (Enter Queue)
+	float entranceArrivalTime;
+	// Variable For Entrance Depart Time (Exit Queue To Look For Parking)
+	float entranceDepartTime;
+	// Increment Variable For Amount of Times Looking For Empty Parking Spot
+	int numberOfTimesLooked;
+	// Variable For Parking Spot
+	int parkingSpotLocation;
+	// Variable For Parking Time Length
+	float parkingTimeLength;
+	// Variable For Exit Arrival Time (Enter Queue To Leave Parking Lot)
+	float exitArrivalTime;
+	// Variable For Exit Depart Time (What Time They Left Exit Queue)
+	float exitDepartTime;
+};
+
+
 // Simulation Info Structure
 class Simulation_Information
 {
 public:
 	// Variables For Simulation
-	int parkingSpots, numberOfCars, entranceQueueSize, exitQueueSize;
-	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate, simulationTime, timeOfLastEvent;
 	const static int NUMOFEVENTS = 6;
+	int parkingSpots, numberOfCars; 
+	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate, simulationTime, timeOfLastEvent;
 
 	// Statistical Counter Variables
 	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers, numberOfEvents,
@@ -42,6 +64,7 @@ public:
 
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;
+
 
 	// Entrace And Exit Queue
 	std::queue <Car*> entranceQueue;
@@ -75,26 +98,6 @@ public:
 	void report(void);
 };
 
-// Car Structure For All Automobile Information
-typedef struct Car
-{
-	// Variable For Car Number
-	int carNumber;
-	// Variable For Entrance Arrival Time (Enter Queue)
-	float entranceArrivalTime;
-	// Variable For Entrance Depart Time (Exit Queue To Look For Parking)
-	float entranceDepartTime;
-	// Increment Variable For Amount of Times Looking For Empty Parking Spot
-	int numberOfTimesLooked;
-	// Variable For Parking Spot
-	int parkingSpotLocation;
-	// Variable For Parking Time Length
-	float parkingTimeLength;
-	// Variable For Exit Arrival Time (Enter Queue To Leave Parking Lot)
-	float exitArrivalTime;
-	// Variable For Exit Depart Time (What Time They Left Exit Queue)
-	float exitDepartTime;
-};
 
 // Mass Density Function 
 float massDensityFunction();
