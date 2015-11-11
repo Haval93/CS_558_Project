@@ -37,10 +37,6 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 			simulationInput >> parkIntervalLow;
 			// Exit Gate
 			simulationInput >> exitGate;
-			// Entrace Queue Size
-			simulationInput >> entranceQueueSize;
-			// Exit Queue Size 
-			simulationInput >> exitQueueSize;
 		}
 		// Close File 
 		simulationInput.close();
@@ -54,8 +50,6 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 		parkIntervalHigh = 120;
 		parkIntervalLow = 60;
 		exitGate = 60;
-		entranceQueueSize = 500;
-		exitQueueSize = 500;
 	}
 
 	// Statistical Counters.
@@ -86,19 +80,21 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 		parkingLotSpots[i] = EMPTY;
 
 	// Resize The Vector To The Number Of Cars in the simulation
-	// arrayOfCars.resize(numberOfCars);
+	arrayOfCars.resize(numberOfCars);
 
 	// Initialization the Cars into the car arrays
-	// for (int i = 0; i < numberOfCars; i++)
-		// arrayOfCars[i] = new Car;
+	for (int i = 0; i < numberOfCars; i++)
+		arrayOfCars[i] = new Car;
 
-	/* Initialize event list.  Since no customers are present, the departure
-	(service completion) event is eliminated from consideration. */
+
+	//  Initialize event list.  Since no customers are present, the departure
+	// (service completion) event is eliminated from consideration
+
 	// First arrival
 	timeOfNextEvent[1] = simulationTime + massDensityFunction();
 	// Car Instance For First Class
-	Car *firstCar = new Car;
-	firstCar->entranceArrivalTime = timeOfNextEvent[1];
+	Car firstCar = Car();
+	firstCar.entranceArrivalTime = timeOfNextEvent[1];
 	// Depart entrance queue
 	timeOfNextEvent[2] = EMPTY;
 	// Leave parking space
@@ -107,7 +103,6 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	timeOfNextEvent[4] = EMPTY;
 	timeOfNextEvent[5] = EMPTY;
 }
-
 
 // Timing Method. Used To Determined Next Event
 void Simulation_Information::timing(void)
