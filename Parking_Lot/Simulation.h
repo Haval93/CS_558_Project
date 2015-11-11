@@ -61,7 +61,8 @@ public:
 	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers, numberOfEvents,
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus, leavingIndex,
 		exitServerStatus, maxEntranceQueueSize, maxExitQueueSize, totalSearchTime, parked;
-	float totalEntranceQueueDelayTime, totalExitQueueDelayTime, nextLeavingCar;
+	float totalEntranceQueueDelayTime, totalExitQueueDelayTime, nextLeavingCar, timeSinceLastEvent,
+		areaUnderEtranceQueue, areaUnderExitQueue, areaEntranceServerStatus, areaExitServerStatus;
 
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;

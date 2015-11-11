@@ -71,6 +71,11 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	parked = 0;
 	nextLeavingCar = 1.0e+29;
 	leavingIndex = 0;
+	timeSinceLastEvent = 0.0;
+	areaUnderEtranceQueue = 0.0;
+	areaUnderExitQueue = 0.0;
+	areaEntranceServerStatus = 0.0;
+	areaExitServerStatus = 0.0;
 
 	// Make Parking Spot Array The Correct Size
 	parkingLotSpots.resize(parkingSpots);
@@ -369,7 +374,20 @@ void Simulation_Information::exitDepart(void)
 // Update Average Time Stats
 void Simulation_Information::updateAverageTimeStats(void)
 {
+	/* Compute time since last event, and update last-event-time marker. */
 
+	timeSinceLastEvent = simulationTime - timeOfLastEvent;
+	timeOfLastEvent = simulationTime;
+
+	/* Update area under number-in-queue function. */
+
+	areaUnderEtranceQueue += entranceQueue.size() * timeSinceLastEvent;
+	areaUnderExitQueue += exitQueue.size() * timeSinceLastEvent;
+
+	/* Update area under server-busy indicator function. */
+
+	areaEntranceServerStatus += entranceServerStatus * timeSinceLastEvent;
+	areaExitServerStatus += exitServerStatus * timeSinceLastEvent;
 }
 
 
