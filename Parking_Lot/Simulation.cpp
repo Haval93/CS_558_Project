@@ -99,14 +99,16 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 
 	// Initialization the Cars into the car arrays
 	for (int i = 0; i < numberOfCars; i++)
+	{
 		arrayOfCars[i] = Car();
-
-
+		arrayOfCars[i].carNumber = i;
+	}
+	
 	//  Initialize event list.  Since no customers are present, the departure
 	// (service completion) event is eliminated from consideration
 	// First arrival
 	timeOfNextEvent[1] = simulationTime + massDensityFunction();
-	// Car Instance For First Class
+	// Schedule First Event
 	arrayOfCars[0].entranceArrivalTime = timeOfNextEvent[1];
 	// Depart entrance queue
 	timeOfNextEvent[2] = EMPTY;
@@ -227,9 +229,6 @@ void Simulation_Information::entranceArrive(void)
 		//	printf(" time %f", sim_time);
 		//	exit(2);
 		//}
-
-		// Set Car Number
-		arrayOfCars[carsCounter].carNumber = carsCounter;
 
 		// If The Server is Busy Add The Car Into The Entrace Queue
 		entranceQueue.push(arrayOfCars[carsCounter]);
