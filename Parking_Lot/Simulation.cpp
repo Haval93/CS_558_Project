@@ -291,16 +291,6 @@ void Simulation_Information::entranceDepart(void)
 		
 		// Assign Parking Spot To Car
 		arrayOfCars[tempCarNumber].parkingSpotLocation = lotIndex;
-		if (lotIndex % 2 == 0)
-		{
-			exitTime = lotIndex*1.6 + 10;
-			arrayOfCars[tempCarNumber].exitTime = lotIndex*1.6 + 10;
-		}
-		else
-		{
-			arrayOfCars[tempCarNumber].exitTime = lotIndex*1.6 + 9;
-			exitTime = lotIndex*1.6 + 10;
-		}
 	}
 
 	// Increment number of cars parked
@@ -360,12 +350,12 @@ void Simulation_Information::leaveSpot(void)
 	if (leavingIndex % 2 == 0)
 	{
 		exitTime = leavingIndex*1.6 + 10;
-		arrayOfCars[carspotLeaving].exitTime = leavingIndex*1.6 + 10;
+		arrayOfCars[carspotLeaving].exitTime = ((leavingIndex + 1) * 1.6) + 10;
 	}
 	else
 	{
-		arrayOfCars[carspotLeaving].exitTime = leavingIndex*1.6 + 9;
-		exitTime = leavingIndex*1.6 + 10;
+		arrayOfCars[carspotLeaving].exitTime = (leavingIndex * 1.6) + 10;
+		exitTime = (leavingIndex * 1.6) + 10;
 	}
 
 	// Car arrives in exit queue
@@ -455,13 +445,13 @@ void Simulation_Information::report(void)
 {
 	for (int i = 0; i < totalNumberOfCustomers; i++)
 	{
-		std::cout << "car Number " << arrayOfCars[i].carNumber;
-		std::cout << "  car EntranceTime " << arrayOfCars[i].entranceArrivalTime;
-		std::cout << "  car EntranceLeave Time " << arrayOfCars[i].entranceDepartTime;
-		std::cout << "  car parkingSpot " << arrayOfCars[i].parkingSpotLocation;
-		//std::cout << "  car park time " << arrayOfCars[i].parkingTimeLength;
-		std::cout << "  car exit arrival " << arrayOfCars[i].exitArrivalTime;
-		std::cout << "  car exit depart " << arrayOfCars[i].exitDepartTime << std::endl;
+		std::cout << "Car Number: " << arrayOfCars[i].carNumber;
+		// std::cout << "Car Entrance Arrival Time:  " << arrayOfCars[i].entranceArrivalTime;
+		// std::cout << "Car Entrance Depart Time:  " << arrayOfCars[i].entranceDepartTime;
+		std::cout << "Car Parking Spot: " << arrayOfCars[i].parkingSpotLocation;
+		std::cout << "Car Parking To Exit Gate Time: " << arrayOfCars[i].exitTime << std::endl;
+		// std::cout << "Car Exit Arrival Time: " << arrayOfCars[i].exitArrivalTime;
+		// std::cout << "Car Exit Depart Time: " << arrayOfCars[i].exitDepartTime << std::endl;
 
 	}
 }
