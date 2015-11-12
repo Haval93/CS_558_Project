@@ -42,5 +42,8 @@ int main(int argc, char * argv[])
 	// Call Report Function
 	firstSimulation.report();
 
+	// Pause And Wait For Keyboard
+	system("pause");
+
 	return 0;
 }

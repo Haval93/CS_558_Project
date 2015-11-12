@@ -95,10 +95,10 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 		parkingLotSpots[i] = EMPTY;
 
 	// Resize The Vector To The Number Of Cars in the simulation
-	arrayOfCars.resize(numberOfCars);
+	arrayOfCars.resize(numberOfCars * 5);
 
 	// Initialization the Cars into the car arrays
-	for (int i = 0; i < numberOfCars; i++)
+	for (int i = 0; i < numberOfCars * 5; i++)
 	{
 		arrayOfCars[i] = Car();
 		arrayOfCars[i].carNumber = i;
@@ -468,7 +468,7 @@ void Simulation_Information::updateAverageTimeStats(void)
 // Report Statisical Data
 void Simulation_Information::report(void)
 {
-	for (int i = 0; i < arrayOfCars.size(); i++)
+	for (int i = 0; i < totalNumberOfCustomers; i++)
 	{
 		std::cout << "car Number " << arrayOfCars[i].carNumber;
 		std::cout << "  car EntranceTime " << arrayOfCars[i].entranceArrivalTime;
