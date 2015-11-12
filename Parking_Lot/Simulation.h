@@ -30,6 +30,7 @@ Geoff Crews
 class Car
 {
 public:
+	Car();
 	int carNumber;
 	// Variable For Entrance Arrival Time (Enter Queue)
 	float entranceArrivalTime;
@@ -62,17 +63,15 @@ public:
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus, leavingIndex,
 		exitServerStatus, maxEntranceQueueSize, maxExitQueueSize, totalSearchTime, parked;
 	float totalEntranceQueueDelayTime, totalExitQueueDelayTime, nextLeavingCar, timeSinceLastEvent,
-		areaUnderEtranceQueue, areaUnderExitQueue, areaEntranceServerStatus, areaExitServerStatus;
+		areaUnderEntranceQueue, areaUnderExitQueue, areaEntranceServerStatus, areaExitServerStatus;
 
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;
-
-
 	// Entrace And Exit Queue
-	std::queue <Car*> entranceQueue;
-	std::queue <Car*> exitQueue;
+	std::queue <Car> entranceQueue;
+	std::queue <Car> exitQueue;
 	// Car List
-	std::vector <Car*> arrayOfCars;
+	std::vector <Car> arrayOfCars;
 
 	// Time of Next Array Event That Will Tell Simulation When The Next Simulated Event Is.
 	// Will Be A Constant Size 6 For Size of All Event Handling Functions for Simulation.  
@@ -98,13 +97,12 @@ public:
 	void updateAverageTimeStats(void);
 	// Report Statisical Data
 	void report(void);
-	// Determines what parkingspot is leaving next
-	void leaveSpot(void);
 };
 
 
 // Mass Density Function 
 float massDensityFunction();
+float ParkingTime(float parkIntervalLow, float parkIntervalHigh);
 
 
 #endif
