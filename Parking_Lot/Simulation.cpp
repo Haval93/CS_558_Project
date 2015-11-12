@@ -432,7 +432,6 @@ void Simulation_Information::exitArrive()
 // Depart Function For Exit Gate
 void Simulation_Information::exitDepart(void)
 {
-
 	// Check to see whether the queue is empty.
 	if (exitQueue.size() == 0)
 	{
@@ -444,7 +443,6 @@ void Simulation_Information::exitDepart(void)
 
 	else
 	{
-
 		// Compute the delay of the customer who is beginning service and update
 		// the total delay accumulator.
 		// totalExitQueueDelayTime = simulationTime - exitQueue.car.exitarrivalTime;
@@ -452,10 +450,16 @@ void Simulation_Information::exitDepart(void)
 		// Increment the number of customers delayed, and schedule departure.
 		timeOfNextEvent[5] = simulationTime + exitGate;
 
+		// Get The Next Car Object In The Queue
 		Car carObject = exitQueue.front();
+
+		// Temp Variable To Get It's Number
 		int temp = carObject.carNumber;
+
+		// Assign The Car Exit Departure Time
 		arrayOfCars[temp].exitDepartTime = simulationTime;
 
+		// Pop The Car Off The Queue and It Has Left The Simulation
 		exitQueue.pop();
 	}
 }
