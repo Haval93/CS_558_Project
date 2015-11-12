@@ -67,6 +67,7 @@ public:
 		float exitDepartTime = 0.0;
 		// Total Time In System
 		float totalTimeInSystem = 0.0;
+		// Time it takes to get to exit
 		float exitTimeCar = 0.0;
 	}
 };

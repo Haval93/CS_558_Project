@@ -146,10 +146,13 @@ void Simulation_Information::timing(void)
 		// Find smallest time
 		if (timeOfNextEvent[i] < minTimeNextEvent) 
 		{
+			// Set Min Time To Next Event
 			minTimeNextEvent = timeOfNextEvent[i];
-			// Next event is event with smallest time
+			// Set Next Event Type
 			nextEventType = i; 
+			// Set Time Of Last Event To Simulation 
 			timeOfLastEvent = simulationTime;
+			// Set Simulation Time To The Next Event
 			simulationTime = timeOfNextEvent[i];
 
 		}
@@ -245,6 +248,9 @@ void Simulation_Information::entranceDepart(void)
 	// Amount Of Search Time For Each Car
 	float singleCarSearchTime = 0;
 
+	// Parking Time For Each Car
+	int parkTime = 0;
+
 	// Car's Index In Parking Lot Structure Array
 	int lotIndex = 0;
 
@@ -283,32 +289,45 @@ void Simulation_Information::entranceDepart(void)
 		// Choose random spot and check to see if it's empty
 		do
 		{
-			singleCarSearchTime += 30.0f;
-			totalSearchTime += 30.0f;
+			// Car Count of number of times took to find 
+			arrayOfCars[tempCarNumber].numberOfTimesLooked++;
+			
+			// Increment Time Spent Looking By 30 Each Time It Looks For a New Spot
+			arrayOfCars[tempCarNumber].timeSpentLooking += 30.0f;
+
+			// Randomize Parking Spot
 			lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots - 1));
+
 		} while (parkingLotSpots[lotIndex] <= EMPTY); // Try again if spot was taken
 
 		
 		// Assign Parking Spot To Car
 		arrayOfCars[tempCarNumber].parkingSpotLocation = lotIndex;
+
+		// Store departure time in spot
+		int parkTime = ParkingTime(parkIntervalLow, parkIntervalHigh);
+
+		// Add Parking Spot Time Length To Each Car
+		arrayOfCars[tempCarNumber].parkingTimeLength = parkTime;
 	}
 
 	// Increment number of cars parked
 	parked++; 
 
-	// Store departure time in spot
-	int parkTime = ParkingTime(parkIntervalLow, parkIntervalHigh);
-
-	//arrayOfCars[temp]
+	// Updates Element Time For That Parking Spot
 	parkingLotSpots[lotIndex] = simulationTime + singleCarSearchTime + parkTime;
 
 	// Determine the time of the next car to leave a spot
 	for (int i = 0; i <= parkingSpots - 1; i++)
 	{
+		// Find The Next Leaving Car
 		if (parkingLotSpots[i] < nextLeavingCar)
 		{
+			// Set Next Car Leaving To The Value Of The Departure Time Of The Next Leaving Car
 			nextLeavingCar = parkingLotSpots[i];
+			// Assign Leaving Index To Current Counter
 			leavingIndex = i;
+			// Update Timing Function 
 			timeOfNextEvent[3] = parkingLotSpots[i];
 		}
 	}
@@ -318,25 +337,34 @@ void Simulation_Information::entranceDepart(void)
 // Function to handle car leaving lot event
 void Simulation_Information::leaveSpot(void)
 { 
+	// Temp Variable To Find Which Car Just Left
 	int carspotLeaving = -1;
+	
+	// We Will Iterator Through the List From Reverse To Front
 	int arrayEnd = numberOfCars - 1;
+
+	// Go Through The List Until We Find The Lastest Parking Spot
 	while (carspotLeaving == -1)
 	{
+		// Find the Car with the Parking Spot that is matching 
 		if (arrayOfCars[arrayEnd].parkingSpotLocation == leavingIndex)
 			carspotLeaving = arrayOfCars[arrayEnd].carNumber;
+
+		// Decrement Until It Is Found
 		arrayEnd--;
 	}
 
+	// Find Which Side The Car Has Parked And Left To The Exit Gate. 
+	// Depending on Position Exit Time Will Vary
 	if (leavingIndex % 2 == 0)
 	{
-		exitTime = (leavingIndex+1)*1.6 +10;
+		exitTime = (leavingIndex + 1) * 1.6 + 10;
 		arrayOfCars[carspotLeaving].exitTimeCar = exitTime;
 	}
 	else
 	{
-		exitTime = leavingIndex *1.6 + 10 ;
+		exitTime = leavingIndex * 1.6 + 10 ;
 		arrayOfCars[carspotLeaving].exitTimeCar = exitTime;
-
 	}
 	
 	// Remove car from spot
@@ -351,14 +379,19 @@ void Simulation_Information::leaveSpot(void)
 	// Find car that is leaving next
 	for (int i = 0; i <= parkingSpots - 1; ++i)
 	{
+		// Find The Next Leaving Car
 		if (parkingLotSpots[i] <= nextLeavingCar)
 		{
+			// Set Next Car Leaving To The Value Of The Departure Time Of The Next Leaving Car
 			nextLeavingCar = parkingLotSpots[i];
+
+			// Assign Leaving Index To Current Counter
 			leavingIndex = i;
+
+			// Update Timing Function 
 			timeOfNextEvent[3] = parkingLotSpots[i];
 		}
 	}
-
 
 	// Car arrives in exit queue
 	exitQueueHelper(carspotLeaving);
@@ -367,9 +400,13 @@ void Simulation_Information::leaveSpot(void)
 //push car on the list
 void Simulation_Information::exitQueueHelper(int carNumber)
 {
+	// Assign The The Car Exit Arrival Time
 	arrayOfCars[carNumber].exitArrivalTime = simulationTime + exitTime;
+
+	// Push The Car Into The Queue
 	exitQueue.push(arrayOfCars[carNumber]);
 
+	// Call Exit Arrive Function
 	exitArrive();
 	
 }
@@ -448,12 +485,12 @@ void Simulation_Information::report(void)
 	for (int i = 0; i < totalNumberOfCustomers; i++)
 	{
 		std::cout << "Car Number: " << arrayOfCars[i].carNumber;
-		// std::cout << "Car Entrance Arrival Time:  " << arrayOfCars[i].entranceArrivalTime;
-		// std::cout << "Car Entrance Depart Time:  " << arrayOfCars[i].entranceDepartTime;
+		std::cout << "Car Entrance Arrival Time:  " << arrayOfCars[i].entranceArrivalTime;
+		std::cout << "Car Entrance Depart Time:  " << arrayOfCars[i].entranceDepartTime;
 		std::cout << "Car Parking Spot: " << arrayOfCars[i].parkingSpotLocation;
-		std::cout << "Car Parking To Exit Gate Time: " << arrayOfCars[i].exitTimeCar << std::endl;
-		// std::cout << "Car Exit Arrival Time: " << arrayOfCars[i].exitArrivalTime;
-		// std::cout << "Car Exit Depart Time: " << arrayOfCars[i].exitDepartTime << std::endl;
+		std::cout << "Car Parking To Exit Gate Time: " << arrayOfCars[i].exitTimeCar;
+		std::cout << "Car Exit Arrival Time: " << arrayOfCars[i].exitArrivalTime;
+		std::cout << "Car Exit Depart Time: " << arrayOfCars[i].exitDepartTime << std::endl;
 
 	}
 }
