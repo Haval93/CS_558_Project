@@ -303,7 +303,7 @@ void Simulation_Information::entranceDepart(void)
 			singleCarSearchTime += 30.0f;
 			totalSearchTime += 30.0f;
 			lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots - 1));
-		} while (parkingLotSpots[lotIndex] = EMPTY); // Try again if spot was taken
+		} while (parkingLotSpots[lotIndex] == EMPTY); // Try again if spot was taken
 
 		
 		// Assign Parking Spot To Car
@@ -388,6 +388,8 @@ void Simulation_Information::exitQueueHelper(int carNumber)
 {
 	arrayOfCars[carNumber].exitArrivalTime = simulationTime;
 	exitQueue.push(arrayOfCars[carNumber]);
+
+	exitArrive();
 	
 }
 
