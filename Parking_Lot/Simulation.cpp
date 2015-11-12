@@ -319,12 +319,24 @@ void Simulation_Information::entranceDepart(void)
 void Simulation_Information::leaveSpot(void)
 { 
 	int carspotLeaving = -1;
-	int arrayEnd = arrayOfCars.size() - 1;
+	int arrayEnd = numberOfCars - 1;
 	while (carspotLeaving == -1)
 	{
 		if (arrayOfCars[arrayEnd].parkingSpotLocation == leavingIndex)
 			carspotLeaving = arrayOfCars[arrayEnd].carNumber;
 		arrayEnd--;
+	}
+
+	if (leavingIndex % 2 == 0)
+	{
+		exitTime = (leavingIndex+1)*1.6 +10;
+		arrayOfCars[carspotLeaving].exitTimeCar = exitTime;
+	}
+	else
+	{
+		exitTime = leavingIndex *1.6 + 10 ;
+		arrayOfCars[carspotLeaving].exitTimeCar = exitTime;
+
 	}
 	
 	// Remove car from spot
@@ -347,16 +359,6 @@ void Simulation_Information::leaveSpot(void)
 		}
 	}
 
-	if (leavingIndex % 2 == 0)
-	{
-		exitTime = leavingIndex*1.6 + 10;
-		arrayOfCars[carspotLeaving].exitTime = ((leavingIndex + 1) * 1.6) + 10;
-	}
-	else
-	{
-		arrayOfCars[carspotLeaving].exitTime = (leavingIndex * 1.6) + 10;
-		exitTime = (leavingIndex * 1.6) + 10;
-	}
 
 	// Car arrives in exit queue
 	exitQueueHelper(carspotLeaving);
@@ -449,7 +451,7 @@ void Simulation_Information::report(void)
 		// std::cout << "Car Entrance Arrival Time:  " << arrayOfCars[i].entranceArrivalTime;
 		// std::cout << "Car Entrance Depart Time:  " << arrayOfCars[i].entranceDepartTime;
 		std::cout << "Car Parking Spot: " << arrayOfCars[i].parkingSpotLocation;
-		std::cout << "Car Parking To Exit Gate Time: " << arrayOfCars[i].exitTime << std::endl;
+		std::cout << "Car Parking To Exit Gate Time: " << arrayOfCars[i].exitTimeCar << std::endl;
 		// std::cout << "Car Exit Arrival Time: " << arrayOfCars[i].exitArrivalTime;
 		// std::cout << "Car Exit Depart Time: " << arrayOfCars[i].exitDepartTime << std::endl;
 

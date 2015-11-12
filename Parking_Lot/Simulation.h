@@ -43,7 +43,7 @@ public:
 	// Total Time In System
 	float totalTimeInSystem;
 	// time it takes to get to the exit
-	float exitTime;
+	float exitTimeCar;
 
 	// Default Constructor
 	Car() 
@@ -67,6 +67,7 @@ public:
 		float exitDepartTime = 0.0;
 		// Total Time In System
 		float totalTimeInSystem = 0.0;
+		float exitTimeCar = 0.0;
 	}
 };
 
