@@ -11,6 +11,16 @@ Geoff Crews
 
 #include "Simulation.h"
 
+// Mnemonic For Server Busy
+#define BUSY 1  
+// Mnemonic For Service IDLE
+#define IDLE 0  
+// Empty Spot
+#define EMPTY 1.0e+30
+
+// Global Car Counter
+int carsCounter = 0;
+
 // Constructor that Initializes all Values
 Simulation_Information::Simulation_Information(int argc, char * argv[])
 {
@@ -146,8 +156,8 @@ void Simulation_Information::timing(void)
 			minTimeNextEvent = timeOfNextEvent[i];
 			// Next event is event with smallest time
 			nextEventType = i; 
-			timeOfLastEvent = simulationTime;
-			simulationTime = timeOfNextEvent[i];
+			// timeOfLastEvent = simulationTime;
+			// simulationTime = timeOfNextEvent[i];
 
 		}
 	}
@@ -199,54 +209,52 @@ void Simulation_Information::chooseNextEvent(void)
 void Simulation_Information::entranceArrive(void)
 {
 
-	// We need to iterator through all the cars and go one at a time into the system. Represents a single server system for entrance. 
-	for (int i = 0; i < numberOfCars; i++)
+	// Schedule next arrival.
+	timeOfNextEvent[1] = simulationTime + massDensityFunction();
+	// Need To Make Sure Ever Car have to make the next car entracearrivaltime to timeOfNextEvent[1]
+	arrayOfCars[carsCounter].entranceArrivalTime = timeOfNextEvent[1];
+
+	// Check to see whether server is busy.
+	if (entranceServerStatus == BUSY) 
 	{
-		// Schedule next arrival.
-		timeOfNextEvent[1] = simulationTime + massDensityFunction();
-		// Need To Make Sure Ever Car have to make the next car entracearrivaltime to timeOfNextEvent[1]
-		arrayOfCars[i].entranceArrivalTime = timeOfNextEvent[1];
+		// We do not a Queue limit. There can be an ultimated number of cars inside the Entrance Queue
 
-		// Check to see whether server is busy.
-		if (entranceServerStatus == BUSY) 
-		{
-			// We do not a Queue limit. There can be an ultimated number of cars inside the Entrance Queue
+		//// Check to see whether an overflow condition exists.
+		//if (entranceQueue.size() > Q_LIMIT)
+		//{
+		//  The queue has overflowed, so stop the simulation.
+		//	printf("\nOverflow of the array time_arrival at");
+		//	printf(" time %f", sim_time);
+		//	exit(2);
+		//}
 
-			//// Check to see whether an overflow condition exists.
-			//if (entranceQueue.size() > Q_LIMIT)
-			//{
-			//  The queue has overflowed, so stop the simulation.
-			//	printf("\nOverflow of the array time_arrival at");
-			//	printf(" time %f", sim_time);
-			//	exit(2);
-			//}
+		// Set Car Number
+		arrayOfCars[carsCounter].carNumber = carsCounter;
 
-			// Set Car Number
-			arrayOfCars[i].carNumber = i;
-
-			// If The Server is Busy Add The Car Into The Entrace Queue
-			entranceQueue.push(arrayOfCars[i]);
-		}
-		else // Server idle
-		{
-			// Server is idle, so arriving customer has a delay of zero.  (The
-			// following two statements are for program clarity and do not affect
-			// the results of the simulation.) 
-			totalEntranceQueueDelayTime = simulationTime - timeOfLastEvent;
-
-			// Increment the number of customers delayed.
-			numberOfCustomersDelayed++;
-			// Set The Server To Busy
-			entranceServerStatus = BUSY;
-
-			// Schedule a departure (service completion).
-			timeOfNextEvent[2] = simulationTime + exitGate;
-
-			// set the entrance depart time for the car object
-			arrayOfCars[i].entranceDepartTime = timeOfNextEvent[2];
-		}
-
+		// If The Server is Busy Add The Car Into The Entrace Queue
+		entranceQueue.push(arrayOfCars[carsCounter]);
 	}
+	else // Server idle
+	{
+		// Server is idle, so arriving customer has a delay of zero.  (The
+		// following two statements are for program clarity and do not affect
+		// the results of the simulation.) 
+		totalEntranceQueueDelayTime = simulationTime - timeOfLastEvent;
+
+		// Increment the number of customers delayed.
+		numberOfCustomersDelayed++;
+		// Set The Server To Busy
+		entranceServerStatus = BUSY;
+
+		// Schedule a departure (service completion).
+		timeOfNextEvent[2] = simulationTime + exitGate;
+
+		// set the entrance depart time for the car object
+		arrayOfCars[carsCounter].entranceDepartTime = timeOfNextEvent[2];
+	}
+
+	// Increment Cars Counter
+	carsCounter++;
 }
 
 

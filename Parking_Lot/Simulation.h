@@ -19,13 +19,6 @@ Geoff Crews
 #ifndef Simulation
 #define Simulation
 
-// Mnemonic For Server Busy
-#define BUSY 1  
-// Mnemonic For Service IDLE
-#define IDLE 0  
-// Empty Spot
-#define EMPTY (1.0e+30)
-
 // Car Structure For All Automobile Information
 class Car
 {
@@ -59,7 +52,7 @@ public:
 	float arrivalRate, parkIntervalHigh, parkIntervalLow, exitGate, simulationTime, timeOfLastEvent;
 
 	// Statistical Counter Variables
-	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers, numberOfEvents,
+	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers,
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus, leavingIndex,
 		exitServerStatus, maxEntranceQueueSize, maxExitQueueSize, totalSearchTime, parked;
 	float totalEntranceQueueDelayTime, totalExitQueueDelayTime, nextLeavingCar, timeSinceLastEvent,
@@ -75,7 +68,7 @@ public:
 
 	// Time of Next Array Event That Will Tell Simulation When The Next Simulated Event Is.
 	// Will Be A Constant Size 6 For Size of All Event Handling Functions for Simulation.  
-	int timeOfNextEvent[NUMOFEVENTS];
+	float timeOfNextEvent[NUMOFEVENTS];
 
 	// Overloaded Constructor. Overloaded Initialization Method
 	Simulation_Information(int argc, char * argv[]);
