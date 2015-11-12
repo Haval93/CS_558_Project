@@ -82,6 +82,8 @@ public:
 	void entranceDepart(void);
 	// Arrival Function For Exit Gate
 	void exitArrive(void);
+	//push onto the exit queue
+	void exitQueueHelper(int);
 	// Depart Function For Exit Gate
 	void exitDepart(void);
 	// Function to handle car leaving lot event

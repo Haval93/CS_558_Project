@@ -325,7 +325,9 @@ void Simulation_Information::entranceDepart(void)
 	parked++; 
 
 	// Store departure time in spot
-	parkingLotSpots[lotIndex] = simulationTime + singleCarSearchTime + ParkingTime(parkIntervalLow, parkIntervalHigh);
+	int parkTime = ParkingTime(parkIntervalLow, parkIntervalHigh);
+	//arrayOfCars[temp]
+	parkingLotSpots[lotIndex] = simulationTime + singleCarSearchTime + parkTime;
 
 	// Print departure time of spot
 	//printf("Spot %d taken. Departure time: %f seconds. Search time: %d\n", lotIndex, lot[lotIndex], singleCarSearchTime);
@@ -347,7 +349,16 @@ void Simulation_Information::entranceDepart(void)
 
 // Function to handle car leaving lot event
 void Simulation_Information::leaveSpot(void)
-{
+{ 
+	int carspotLeaving = -1;
+	int arrayEnd = arrayOfCars.size() - 1;
+	while (carspotLeaving == -1)
+	{
+		if (arrayOfCars[arrayEnd].parkingSpotLocation == leavingIndex)
+			carspotLeaving = arrayOfCars[arrayEnd].carNumber;
+		arrayEnd--;
+	}
+	
 	// Remove car from spot
 	parkingLotSpots[leavingIndex] = EMPTY; 
 
@@ -369,28 +380,21 @@ void Simulation_Information::leaveSpot(void)
 	}
 
 	// Car arrives in exit queue
-	exitArrive();
+	exitQueueHelper(carspotLeaving);
+}
+
+//push car on the list
+void Simulation_Information::exitQueueHelper(int carNumber)
+{
+	arrayOfCars[carNumber].exitArrivalTime = simulationTime;
+	exitQueue.push(arrayOfCars[carNumber]);
+	
 }
 
 // Arrival Function For Exit Gate
-void Simulation_Information::exitArrive(void)
+void Simulation_Information::exitArrive()
 {
 
-	// Check to see whether server is busy.
-	if (exitServerStatus == BUSY)
-	{
-
-		/* There is still room in the queue, so store the time of arrival of the
-		arriving customer at the (new) end of time_arrival. */
-
-		// exitQueue[num_in_q2] = sim_time; /// I dont know what this line is doing
-		
-		// If The Server Is Busy. Through the car into a queue
-
-	}
-
-	else
-	{
 		/* Server is idle, so arriving customer has a delay of zero.  (The
 		following two statements are for program clarity and do not affect
 		the results of the simulation.) */
@@ -399,13 +403,11 @@ void Simulation_Information::exitArrive(void)
 		totalExitQueueDelayTime += simulationTime - timeOfLastEvent;
 
 		// Increment the number of customers delayed, and make server busy.
-
-		exitServerStatus = BUSY;
+		if (exitQueue.size() != 0)
+			exitServerStatus = BUSY;
 
 		// Schedule a departure (service completion).
 		timeOfNextEvent[5] = simulationTime + exitGate;
-	}
-
 }
 
 
@@ -436,6 +438,10 @@ void Simulation_Information::exitDepart(void)
 		// nextEventType[5] = simulationTime + exitGate;
 		timeOfNextEvent[5] = simulationTime + exitGate;
 
+		Car carObject = exitQueue.front();
+		int temp = carObject.carNumber;
+		arrayOfCars[temp].exitDepartTime = simulationTime;
+
 		exitQueue.pop();
 	}
 }
@@ -460,7 +466,17 @@ void Simulation_Information::updateAverageTimeStats(void)
 // Report Statisical Data
 void Simulation_Information::report(void)
 {
-	
+	for (int i = 0; i < arrayOfCars.size(); i++)
+	{
+		std::cout << "car Number " << arrayOfCars[i].carNumber;
+		std::cout << "  car EntranceTime " << arrayOfCars[i].entranceArrivalTime;
+		std::cout << "  car EntranceLeave Time " << arrayOfCars[i].entranceDepartTime;
+		std::cout << "  car parkingSpot " << arrayOfCars[i].parkingSpotLocation;
+		//std::cout << "  car park time " << arrayOfCars[i].parkingTimeLength;
+		std::cout << "  car exit arrival " << arrayOfCars[i].exitArrivalTime;
+		std::cout << "  car exit depart " << arrayOfCars[i].exitDepartTime << std::endl;
+
+	}
 }
 
 
