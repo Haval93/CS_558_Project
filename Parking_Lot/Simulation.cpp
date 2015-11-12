@@ -87,6 +87,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	areaUnderExitQueue = 0.0;
 	areaEntranceServerStatus = 0.0;
 	areaExitServerStatus = 0.0;
+	exitTime = 0.0;
 
 	// Make Parking Spot Array The Correct Size
 	parkingLotSpots.resize(parkingSpots);
@@ -290,6 +291,16 @@ void Simulation_Information::entranceDepart(void)
 		
 		// Assign Parking Spot To Car
 		arrayOfCars[tempCarNumber].parkingSpotLocation = lotIndex;
+		if (lotIndex % 2 == 0)
+		{
+			exitTime = lotIndex*1.6 + 10;
+			arrayOfCars[tempCarNumber].exitTime = lotIndex*1.6 + 10;
+		}
+		else
+		{
+			arrayOfCars[tempCarNumber].exitTime = lotIndex*1.6 + 9;
+			exitTime = lotIndex*1.6 + 10;
+		}
 	}
 
 	// Increment number of cars parked
@@ -346,6 +357,17 @@ void Simulation_Information::leaveSpot(void)
 		}
 	}
 
+	if (leavingIndex % 2 == 0)
+	{
+		exitTime = leavingIndex*1.6 + 10;
+		arrayOfCars[carspotLeaving].exitTime = leavingIndex*1.6 + 10;
+	}
+	else
+	{
+		arrayOfCars[carspotLeaving].exitTime = leavingIndex*1.6 + 9;
+		exitTime = leavingIndex*1.6 + 10;
+	}
+
 	// Car arrives in exit queue
 	exitQueueHelper(carspotLeaving);
 }
@@ -353,7 +375,7 @@ void Simulation_Information::leaveSpot(void)
 //push car on the list
 void Simulation_Information::exitQueueHelper(int carNumber)
 {
-	arrayOfCars[carNumber].exitArrivalTime = simulationTime;
+	arrayOfCars[carNumber].exitArrivalTime = simulationTime + exitTime;
 	exitQueue.push(arrayOfCars[carNumber]);
 
 	exitArrive();

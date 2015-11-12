@@ -42,6 +42,8 @@ public:
 	float exitDepartTime;
 	// Total Time In System
 	float totalTimeInSystem;
+	// time it takes to get to the exit
+	float exitTime;
 
 	// Default Constructor
 	Car() 
@@ -83,7 +85,7 @@ public:
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus, leavingIndex,
 		exitServerStatus, maxEntranceQueueSize, maxExitQueueSize, parked;
 	float totalEntranceQueueDelayTime, totalExitQueueDelayTime, nextLeavingCar, timeSinceLastEvent,
-		areaUnderEntranceQueue, areaUnderExitQueue, areaEntranceServerStatus, areaExitServerStatus, totalSearchTime;
+		areaUnderEntranceQueue, areaUnderExitQueue, areaEntranceServerStatus, areaExitServerStatus, totalSearchTime, exitTime;
 
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;
