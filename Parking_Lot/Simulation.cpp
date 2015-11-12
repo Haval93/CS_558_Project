@@ -156,8 +156,8 @@ void Simulation_Information::timing(void)
 			minTimeNextEvent = timeOfNextEvent[i];
 			// Next event is event with smallest time
 			nextEventType = i; 
-			// timeOfLastEvent = simulationTime;
-			// simulationTime = timeOfNextEvent[i];
+			timeOfLastEvent = simulationTime;
+			simulationTime = timeOfNextEvent[i];
 
 		}
 	}
@@ -286,11 +286,15 @@ void Simulation_Information::entranceDepart(void)
 		// Increment the number of customers delayed, and schedule departure
 		numberOfCustomersDelayed++;
 		timeOfNextEvent[2] = simulationTime + exitGate;
+		
+
+		// Pop The Car Off The Entrance Queue
+		entranceQueue.pop();
 	}
 
 
 	// Pop The Car Off The Entrance Queue
-	entranceQueue.pop();
+	// entranceQueue.pop();
 
 	// Enter lot and search for spot
 	// Choose random spot and check to see if it's empty
@@ -367,6 +371,9 @@ void Simulation_Information::exitArrive(void)
 		arriving customer at the (new) end of time_arrival. */
 
 		// exitQueue[num_in_q2] = sim_time; /// I dont know what this line is doing
+		
+		// If The Server Is Busy. Through the car into a queue
+		
 	}
 
 	else
