@@ -32,8 +32,12 @@ int main(int argc, char * argv[])
 		// Timing Function To Determine The Next Event
 		firstSimulation.timing();
 
-		// Update time-average statistical accumulators. 
-		firstSimulation.updateAverageTimeStats();
+		// Update Average Stats Ever 10 Customers 
+		if (firstSimulation.numberOfCustomersDelayed % 10 == 0)
+		{
+			// Update time-average statistical accumulators. 
+			firstSimulation.updateAverageTimeStats();
+		}
 
 		// Switch To The Next Event Type Based on Event Type
 		firstSimulation.chooseNextEvent();
@@ -42,7 +46,7 @@ int main(int argc, char * argv[])
 	// Call Report Function
 	firstSimulation.report();
 
-	// Pause And Wait For Keyboard
+	// Pause And Wait For Keyboard At The End Of The Program
 	system("pause");
 
 	return 0;

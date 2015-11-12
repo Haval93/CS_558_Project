@@ -33,6 +33,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 		// Open File
 		simulationInput.open(argv[1]);
 
+		// Store Variables From Text File
 		while (simulationInput.is_open() && simulationInput.good())
 		{
 			// Number of Parking Spots
@@ -94,13 +95,17 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	for (int i = 0; i < parkingSpots; i++)
 		parkingLotSpots[i] = EMPTY;
 
-	// Resize The Vector To The Number Of Cars in the simulation
+	// Resize The Vector To The Number Of Cars in the simulation. 
+	// We expand past the number of cars, to make sure we don't get an indexing error.  
 	arrayOfCars.resize(numberOfCars * 5);
 
 	// Initialization the Cars into the car arrays
 	for (int i = 0; i < numberOfCars * 5; i++)
 	{
+		// Create The Amount Of Car Objects Requested By The User
 		arrayOfCars[i] = Car();
+
+		// Assign A Car Number To Each Car
 		arrayOfCars[i].carNumber = i;
 	}
 	
@@ -122,26 +127,6 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 
 	// Leave Exit Queue
 	timeOfNextEvent[5] = EMPTY;
-}
-
-// Car Constructor
-Car::Car()
-{
-	int carNumber = 0;
-	// Variable For Entrance Arrival Time (Enter Queue)
-	float entranceArrivalTime = 0.0;
-	// Variable For Entrance Depart Time (Exit Queue To Look For Parking)
-	float entranceDepartTime = 0.0;
-	// Increment Variable For Amount of Times Looking For Empty Parking Spot
-	int numberOfTimesLooked = 0;
-	// Variable For Parking Spot
-	int parkingSpotLocation = 0;
-	// Variable For Parking Time Length
-	float parkingTimeLength = 0.0;
-	// Variable For Exit Arrival Time (Enter Queue To Leave Parking Lot)
-	float exitArrivalTime = 0.0;
-	// Variable For Exit Depart Time (What Time They Left Exit Queue)
-	float exitDepartTime = 0.0;
 }
 
 // Timing Method. Used To Determined Next Event
@@ -215,7 +200,6 @@ void Simulation_Information::chooseNextEvent(void)
 // Arrival Function For Entrance Gate
 void Simulation_Information::entranceArrive(void)
 {
-
 	// Schedule next arrival.
 	timeOfNextEvent[1] = simulationTime + massDensityFunction();
 
@@ -230,9 +214,7 @@ void Simulation_Information::entranceArrive(void)
 	}
 	else 
 	{
-		// Server is idle, so arriving customer has a delay of zero.  (The
-		// following two statements are for program clarity and do not affect
-		// the results of the simulation.) 
+		// Server is idle, so arriving customer has a delay of zero. 
 		totalEntranceQueueDelayTime = simulationTime - timeOfLastEvent;
 
 		// Increment the number of customers delayed.
@@ -242,7 +224,7 @@ void Simulation_Information::entranceArrive(void)
 		entranceServerStatus = BUSY;
 
 		// Schedule a departure (service completion).
-		timeOfNextEvent[2] = simulationTime + exitGate;
+		timeOfNextEvent[2] = simulationTime + arrivalRate;
 
 		// Set the entrance depart time for the car object
 		arrayOfCars[carsCounter].entranceDepartTime = timeOfNextEvent[2];
@@ -288,7 +270,7 @@ void Simulation_Information::entranceDepart(void)
 		numberOfCustomersDelayed++;
 
 		// Schedule departure
-		timeOfNextEvent[2] = simulationTime + exitGate;
+		timeOfNextEvent[2] = simulationTime + arrivalRate;
 
 		// Schedule Depart Time For Current Time
 		arrayOfCars[tempCarNumber].entranceDepartTime = simulationTime;
@@ -303,36 +285,21 @@ void Simulation_Information::entranceDepart(void)
 			singleCarSearchTime += 30.0f;
 			totalSearchTime += 30.0f;
 			lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots - 1));
-		} while (parkingLotSpots[lotIndex] == EMPTY); // Try again if spot was taken
+		} while (parkingLotSpots[lotIndex] <= EMPTY); // Try again if spot was taken
 
 		
 		// Assign Parking Spot To Car
 		arrayOfCars[tempCarNumber].parkingSpotLocation = lotIndex;
-
-
 	}
-
-	// Enter lot and search for spot
-	// Choose random spot and check to see if it's empty
-	/*do
-	{
-		singleCarSearchTime += 30.0f;
-		totalSearchTime += 30.0f;
-		lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots - 1));
-	} while (parkingLotSpots[lotIndex] = EMPTY); // Try again if spot was taken*/
 
 	// Increment number of cars parked
 	parked++; 
 
 	// Store departure time in spot
 	int parkTime = ParkingTime(parkIntervalLow, parkIntervalHigh);
+
 	//arrayOfCars[temp]
 	parkingLotSpots[lotIndex] = simulationTime + singleCarSearchTime + parkTime;
-
-	// Print departure time of spot
-	//printf("Spot %d taken. Departure time: %f seconds. Search time: %d\n", lotIndex, lot[lotIndex], singleCarSearchTime);
-	//cout << "Spot " << left << setw(2) << lotIndex << " taken.   Departure time: " << left << setw(8) << lot[lotIndex] << " seconds.   Search time: " << singleCarSearchTime << endl;
-	//cout << "Spot number taken: " << left << setw(2) << lotIndex << "   Departure time in seconds: " << left << setw(8) << lot[lotIndex] << "   Search time: " << singleCarSearchTime << endl;
 
 	// Determine the time of the next car to leave a spot
 	for (int i = 0; i <= parkingSpots - 1; i++)
@@ -400,8 +367,6 @@ void Simulation_Information::exitArrive()
 		/* Server is idle, so arriving customer has a delay of zero.  (The
 		following two statements are for program clarity and do not affect
 		the results of the simulation.) */
-
-		
 		totalExitQueueDelayTime += simulationTime - timeOfLastEvent;
 
 		// Increment the number of customers delayed, and make server busy.
@@ -409,7 +374,7 @@ void Simulation_Information::exitArrive()
 			exitServerStatus = BUSY;
 
 		// Schedule a departure (service completion).
-		timeOfNextEvent[5] = simulationTime + exitGate;
+		timeOfNextEvent[5] = simulationTime + arrivalRate;
 }
 
 
@@ -420,9 +385,8 @@ void Simulation_Information::exitDepart(void)
 	// Check to see whether the queue is empty.
 	if (exitQueue.size() == 0)
 	{
-		/* The queue is empty so make the server idle and eliminate the
-		departure (service completion) event from consideration. */
-
+		// The queue is empty so make the server idle and eliminate the
+		// departure (service completion) event from consideration.
 		exitServerStatus = IDLE;
 		timeOfNextEvent[5] = EMPTY;
 	}
@@ -432,12 +396,9 @@ void Simulation_Information::exitDepart(void)
 
 		// Compute the delay of the customer who is beginning service and update
 		// the total delay accumulator.
-
 		// totalExitQueueDelayTime = simulationTime - exitQueue.car.exitarrivalTime;
-		
 
 		// Increment the number of customers delayed, and schedule departure.
-		// nextEventType[5] = simulationTime + exitGate;
 		timeOfNextEvent[5] = simulationTime + exitGate;
 
 		Car carObject = exitQueue.front();
@@ -451,6 +412,8 @@ void Simulation_Information::exitDepart(void)
 // Update Average Time Stats
 void Simulation_Information::updateAverageTimeStats(void)
 {
+	// Show Simulation Time, Last Event Time, Update Queue Sizes. Get Some Area Under Curve Statistics 
+
 	// Compute time since last event, and update last-event-time marker. 
 	timeSinceLastEvent = simulationTime - timeOfLastEvent;
 	timeOfLastEvent = simulationTime;

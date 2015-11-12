@@ -23,7 +23,6 @@ Geoff Crews
 class Car
 {
 public:
-	Car();
 	int carNumber;
 	// Variable For Entrance Arrival Time (Enter Queue)
 	float entranceArrivalTime;
@@ -31,6 +30,8 @@ public:
 	float entranceDepartTime;
 	// Increment Variable For Amount of Times Looking For Empty Parking Spot
 	int numberOfTimesLooked;
+	// Time Spent Looking For Spot
+	float timeSpentLooking;
 	// Variable For Parking Spot
 	int parkingSpotLocation;
 	// Variable For Parking Time Length
@@ -39,6 +40,32 @@ public:
 	float exitArrivalTime;
 	// Variable For Exit Depart Time (What Time They Left Exit Queue)
 	float exitDepartTime;
+	// Total Time In System
+	float totalTimeInSystem;
+
+	// Default Constructor
+	Car() 
+	{
+		int carNumber = 0;
+		// Variable For Entrance Arrival Time (Enter Queue)
+		float entranceArrivalTime = 0.0;
+		// Variable For Entrance Depart Time (Exit Queue To Look For Parking)
+		float entranceDepartTime = 0.0;
+		// Increment Variable For Amount of Times Looking For Empty Parking Spot
+		int numberOfTimesLooked = 0;
+		// Time Spent Looking For Spot
+		float timeSpentLooking = 0.0;
+		// Variable For Parking Spot
+		int parkingSpotLocation = 0;
+		// Variable For Parking Time Length
+		float parkingTimeLength = 0.0;
+		// Variable For Exit Arrival Time (Enter Queue To Leave Parking Lot)
+		float exitArrivalTime = 0.0;
+		// Variable For Exit Depart Time (What Time They Left Exit Queue)
+		float exitDepartTime = 0.0;
+		// Total Time In System
+		float totalTimeInSystem = 0.0;
+	}
 };
 
 
