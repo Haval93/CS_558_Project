@@ -78,8 +78,14 @@ now the entrace and exit queues will no longer have a size limit. So an infinant
 
 Extra Features: 
 	The main extra feature we have is the car objects. Because we make car objects we can now print out every cars information so if the user wants to focus on something that we are not they are able to do that. 
+	We also made it so that cars farther away from the exit gate will take longer to get to the exit gate. So cars who are close will take seconds to get to the exit and it grows the farther away you go from the exit. So each spot takes different times to get to the exit. 
+	We have data being printed after every 10 cars have left the system we are outputting statistical data. That way if the user wants to look at the data real time they can. 
+	We also set it up so that if the user enters a huge number of cars in the system and decides half way through they would like to end the simulation if they press the "esc" button the simulation will end. 
+	
+	
 
 Known bugs:
+	We currently have no known bugs at this time. With enough time bugs will come up and depending on the user data bugs might come up. after hours testing though no bugs are currently found. 
 
 Lessons Learned:
-We learned how important it is to make car objects in terms of debugging. We also learned that most of the old code was redundant and should be deleted. We found better ways to do program the simulation making it sleaker and more efficient code. Most of the lessons learned were personal lessons in working in a big group. This program would have been better if the group was 2-3 people. Having a larger group allowed for some people to not code as much as others. Also still some people would not learn git to push and pull the code from the repository and instead emailing the code. This makes it harder to track the changes. This would not be as much of an issue if they could show up for pair programming. Although some group members would not show up for it. If we were given the chance to redo the program we would choose a team of two instead. 
+We learned how important it is to make car objects in terms of debugging. We also learned that most of the old code was redundant and should be deleted. We found better ways to do program the simulation making it sleaker and more efficient code. Most of the lessons learned were personal lessons in working in a big group. This program would have been better if the group was 2-3 people. Having a larger group allowed for some people to not code as much as others. Also still some people would not learn git to push and pull the code from the repository and instead emailing the code. This makes it harder to track the changes. This would not be as much of an issue if they could show up for pair programming. Although some group members would not show up for it. If we were given the chance to redo the program we would choose a team of two or three instead. 
