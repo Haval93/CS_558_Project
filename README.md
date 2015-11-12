@@ -60,8 +60,8 @@ opening up the simulationValues.txt file and changing those values. The values a
 1. the number of pakring spots in the system
 2. the number of cars in the system
 3. rate the entrance gate will let people in the parking lot (in seconds)
-4. the high value time spent in the parking lot
-5. the low value for time in the parking lot
+4. the high value time spent in the parking lot (in seconds)
+5. the low value for time in the parking lot (in seconds)
 6. the rate at which a car will be allowed to exit the parking lot (in seconds)
 
 the user then opens visual studios and goes to project, parkinglot properties. Once in there you go to debugging and in comman arguments you click the drop down and click edit. From there you will have to copy the file path of the txt file and paste it in there. 
