@@ -285,10 +285,14 @@ void Simulation_Information::entranceDepart(void)
 		totalEntranceQueueDelayTime = simulationTime - nextCarInLine.entranceArrivalTime;
 
 		// Increment the number of customers delayed
-		// Schedule departure
 		numberOfCustomersDelayed++;
+
+		// Schedule departure
 		timeOfNextEvent[2] = simulationTime + exitGate;
-		
+
+		// Schedule Depart Time For Current Time
+		arrayOfCars[tempCarNumber].entranceDepartTime = simulationTime;
+
 		// Pop The Car Off The Entrance Queue
 		entranceQueue.pop();
 
