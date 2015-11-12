@@ -5,9 +5,9 @@ CS558 fall 2015
 
 # Programmer: Ryan Stevens   RedID: 810318529
 # Programmer: Haval Ahmed    RedID: 815013661
-# Programmer: Sami Badra     RedID: 815012738
-# Programmer: Geoff Crews    RedID: 816165149
 # Programmer: Lauren Peppard RedID: 813614016
+# Programmer: Geoff Crews    RedID: 816165149
+# Programmer: Sami Badra     RedID: 815012738
 
 File Manifest:
 
