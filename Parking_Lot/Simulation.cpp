@@ -66,7 +66,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	simulationTime = 0.0;
 	nextEventType = 0;
 	numberOfCustomersDelayed = 0;
-	totalNumberOfCustomers = 0;
+	totalNumberOfCustomers = numberOfCars;
 	numberInEntranceQueue = 0;
 	numberInExitQueue = 0;
 	entranceServerStatus = 0;

@@ -27,7 +27,7 @@ int main(int argc, char * argv[])
 	Simulation_Information firstSimulation = Simulation_Information(argc, argv);
 
 	// Simulation Loop. Run Simulation Until Exit Parameter is met.
-	while (firstSimulation.numberOfCustomersDelayed <= firstSimulation.totalNumberOfCustomers)
+	while (firstSimulation.numberOfCustomersDelayed < firstSimulation.totalNumberOfCustomers)
 	{
 		// Timing Function To Determine The Next Event
 		firstSimulation.timing();
