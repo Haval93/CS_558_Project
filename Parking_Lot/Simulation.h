@@ -54,9 +54,9 @@ public:
 	// Statistical Counter Variables
 	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers,
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus, leavingIndex,
-		exitServerStatus, maxEntranceQueueSize, maxExitQueueSize, totalSearchTime, parked;
+		exitServerStatus, maxEntranceQueueSize, maxExitQueueSize, parked;
 	float totalEntranceQueueDelayTime, totalExitQueueDelayTime, nextLeavingCar, timeSinceLastEvent,
-		areaUnderEntranceQueue, areaUnderExitQueue, areaEntranceServerStatus, areaExitServerStatus;
+		areaUnderEntranceQueue, areaUnderExitQueue, areaEntranceServerStatus, areaExitServerStatus, totalSearchTime;
 
 	// Parking Lot Array. Initializing as a vector and will resize dynamically based on user input
 	std::vector <float> parkingLotSpots;

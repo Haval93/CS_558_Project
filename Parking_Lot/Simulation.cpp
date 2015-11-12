@@ -77,7 +77,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	maxExitQueueSize = 0;
 	totalEntranceQueueDelayTime = 0.0;
 	totalExitQueueDelayTime = 0.0;
-	totalSearchTime = 0;
+	totalSearchTime = 0.0;
 	parked = 0;
 	nextLeavingCar = 1.0e+29;
 	leavingIndex = 0;
@@ -246,6 +246,9 @@ void Simulation_Information::entranceArrive(void)
 
 		// Set the entrance depart time for the car object
 		arrayOfCars[carsCounter].entranceDepartTime = timeOfNextEvent[2];
+
+		// Put Car Into The Entrance Queue
+		entranceQueue.push(arrayOfCars[carsCounter]);
 	}
 
 	// Increment Cars Counter
@@ -257,7 +260,7 @@ void Simulation_Information::entranceArrive(void)
 void Simulation_Information::entranceDepart(void)
 {
 	// Amount Of Search Time For Each Car
-	int singleCarSearchTime = 0;
+	float singleCarSearchTime = 0;
 
 	// Car's Index In Parking Lot Structure Array
 	int lotIndex = 0;
@@ -275,36 +278,50 @@ void Simulation_Information::entranceDepart(void)
 		// Need To Access The Next Car In Line
 		Car nextCarInLine = entranceQueue.front();
 
+		// Temp Variable 
+		int tempCarNumber = nextCarInLine.carNumber;
+
 		// Compute the delay of the customer who is beginning service and update the total delay accumulator 
 		totalEntranceQueueDelayTime = simulationTime - nextCarInLine.entranceArrivalTime;
 
-		// Increment the number of customers delayed, and schedule departure
+		// Increment the number of customers delayed
+		// Schedule departure
 		numberOfCustomersDelayed++;
 		timeOfNextEvent[2] = simulationTime + exitGate;
 		
 		// Pop The Car Off The Entrance Queue
 		entranceQueue.pop();
+
+		// Enter lot and search for spot
+		// Choose random spot and check to see if it's empty
+		do
+		{
+			singleCarSearchTime += 30.0f;
+			totalSearchTime += 30.0f;
+			lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots - 1));
+		} while (parkingLotSpots[lotIndex] = EMPTY); // Try again if spot was taken
+
+		
+		// Assign Parking Spot To Car
+		arrayOfCars[tempCarNumber].parkingSpotLocation = lotIndex;
+
+
 	}
 
 	// Enter lot and search for spot
 	// Choose random spot and check to see if it's empty
-	do
+	/*do
 	{
-		singleCarSearchTime += 3;
-		totalSearchTime += 3;
+		singleCarSearchTime += 30.0f;
+		totalSearchTime += 30.0f;
 		lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots - 1));
-	} while (parkingLotSpots[lotIndex] <= 1.0e+29); // Try again if spot was taken
-
-	//singleCarSearchTime += parked;
+	} while (parkingLotSpots[lotIndex] = EMPTY); // Try again if spot was taken*/
 
 	// Increment number of cars parked
 	parked++; 
 
-	// temp float
-	float tempTime = ParkingTime(parkIntervalLow, parkIntervalHigh);
-
 	// Store departure time in spot
-	parkingLotSpots[lotIndex] = simulationTime + singleCarSearchTime + tempTime;
+	parkingLotSpots[lotIndex] = simulationTime + singleCarSearchTime + ParkingTime(parkIntervalLow, parkIntervalHigh);
 
 	// Print departure time of spot
 	//printf("Spot %d taken. Departure time: %f seconds. Search time: %d\n", lotIndex, lot[lotIndex], singleCarSearchTime);
