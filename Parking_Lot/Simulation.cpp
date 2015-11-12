@@ -53,7 +53,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	}
 	else
 	{
-		// Default Initialization Variables. Will be Read In Exactly This Order
+		// Default Initialization Variables.
 		parkingSpots = 60;
 		numberOfCars = 60;
 		arrivalRate = 60;
@@ -104,18 +104,23 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 		arrayOfCars[i].carNumber = i;
 	}
 	
-	//  Initialize event list.  Since no customers are present, the departure
-	// (service completion) event is eliminated from consideration
+	// Initialize event list. Since no customers are present, the departure (service completion) event is eliminated from consideration
 	// First arrival
 	timeOfNextEvent[1] = simulationTime + massDensityFunction();
+
 	// Schedule First Event
 	arrayOfCars[0].entranceArrivalTime = timeOfNextEvent[1];
+
 	// Depart entrance queue
 	timeOfNextEvent[2] = EMPTY;
+
 	// Leave parking space
 	timeOfNextEvent[3] = EMPTY;
+
 	// Arrive at exit queue
 	timeOfNextEvent[4] = EMPTY;
+
+	// Leave Exit Queue
 	timeOfNextEvent[5] = EMPTY;
 }
 
@@ -213,27 +218,17 @@ void Simulation_Information::entranceArrive(void)
 
 	// Schedule next arrival.
 	timeOfNextEvent[1] = simulationTime + massDensityFunction();
+
 	// Need To Make Sure Ever Car have to make the next car entracearrivaltime to timeOfNextEvent[1]
 	arrayOfCars[carsCounter].entranceArrivalTime = timeOfNextEvent[1];
 
 	// Check to see whether server is busy.
 	if (entranceServerStatus == BUSY) 
 	{
-		// We do not a Queue limit. There can be an ultimated number of cars inside the Entrance Queue
-
-		//// Check to see whether an overflow condition exists.
-		//if (entranceQueue.size() > Q_LIMIT)
-		//{
-		//  The queue has overflowed, so stop the simulation.
-		//	printf("\nOverflow of the array time_arrival at");
-		//	printf(" time %f", sim_time);
-		//	exit(2);
-		//}
-
 		// If The Server is Busy Add The Car Into The Entrace Queue
 		entranceQueue.push(arrayOfCars[carsCounter]);
 	}
-	else // Server idle
+	else 
 	{
 		// Server is idle, so arriving customer has a delay of zero.  (The
 		// following two statements are for program clarity and do not affect
@@ -242,13 +237,14 @@ void Simulation_Information::entranceArrive(void)
 
 		// Increment the number of customers delayed.
 		numberOfCustomersDelayed++;
+
 		// Set The Server To Busy
 		entranceServerStatus = BUSY;
 
 		// Schedule a departure (service completion).
 		timeOfNextEvent[2] = simulationTime + exitGate;
 
-		// set the entrance depart time for the car object
+		// Set the entrance depart time for the car object
 		arrayOfCars[carsCounter].entranceDepartTime = timeOfNextEvent[2];
 	}
 
@@ -262,6 +258,7 @@ void Simulation_Information::entranceDepart(void)
 {
 	// Amount Of Search Time For Each Car
 	int singleCarSearchTime = 0;
+
 	// Car's Index In Parking Lot Structure Array
 	int lotIndex = 0;
 
@@ -269,7 +266,7 @@ void Simulation_Information::entranceDepart(void)
 	if (entranceQueue.size() == 0)
 	{
 		// The queue is empty so make the server idle and eliminate the
-		// departure (service completion) event from consideration. */
+		// departure (service completion) event from consideration.
 		entranceServerStatus = IDLE;
 		timeOfNextEvent[2] = EMPTY;
 	}
@@ -280,20 +277,14 @@ void Simulation_Information::entranceDepart(void)
 
 		// Compute the delay of the customer who is beginning service and update the total delay accumulator 
 		totalEntranceQueueDelayTime = simulationTime - nextCarInLine.entranceArrivalTime;
-		// Need To Look At This entranceQueue.carnextinline.entrancearrive;
 
 		// Increment the number of customers delayed, and schedule departure
 		numberOfCustomersDelayed++;
 		timeOfNextEvent[2] = simulationTime + exitGate;
 		
-
 		// Pop The Car Off The Entrance Queue
 		entranceQueue.pop();
 	}
-
-
-	// Pop The Car Off The Entrance Queue
-	// entranceQueue.pop();
 
 	// Enter lot and search for spot
 	// Choose random spot and check to see if it's empty
@@ -338,8 +329,10 @@ void Simulation_Information::leaveSpot(void)
 {
 	// Remove car from spot
 	parkingLotSpots[leavingIndex] = EMPTY; 
+
 	// Next Leaving Car Variable 
 	nextLeavingCar = EMPTY;
+
 	// Decrement Number of Cars Parked
 	parked--;
 
@@ -372,7 +365,7 @@ void Simulation_Information::exitArrive(void)
 		// exitQueue[num_in_q2] = sim_time; /// I dont know what this line is doing
 		
 		// If The Server Is Busy. Through the car into a queue
-		
+
 	}
 
 	else
@@ -430,17 +423,14 @@ void Simulation_Information::exitDepart(void)
 void Simulation_Information::updateAverageTimeStats(void)
 {
 	// Compute time since last event, and update last-event-time marker. 
-
 	timeSinceLastEvent = simulationTime - timeOfLastEvent;
 	timeOfLastEvent = simulationTime;
 
 	// Update area under number-in-queue function.
-
 	areaUnderEntranceQueue += entranceQueue.size() * timeSinceLastEvent;
 	areaUnderExitQueue += exitQueue.size() * timeSinceLastEvent;
 
 	// Update area under server-busy indicator function.
-
 	areaEntranceServerStatus += entranceServerStatus * timeSinceLastEvent;
 	areaExitServerStatus += exitServerStatus * timeSinceLastEvent;
 }
@@ -453,6 +443,7 @@ void Simulation_Information::report(void)
 }
 
 
+// Mass Density Function 
 float massDensityFunction()
 {
 	// F(X) = 24 * 3(1 - X)
@@ -467,7 +458,7 @@ float massDensityFunction()
 	return 72 * (1 - randomNumber);
 }
 
-//get a random parking number between a range
+// Get a random parking number between a range
 float ParkingTime(float parkIntervalLow, float parkIntervalHigh)
 {
 	//25 + (std::rand() % (63 - 25 + 1))
