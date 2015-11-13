@@ -55,11 +55,11 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	else
 	{
 		// Default Initialization Variables.
-		parkingSpots = 10;
-		numberOfCars = 40;
+		parkingSpots = 50;
+		numberOfCars = 100;
 		arrivalRate = 60;
-		parkIntervalHigh = 180;
-		parkIntervalLow = 100;
+		parkIntervalHigh = 300;
+		parkIntervalLow = 120;
 		exitGate = 60;
 	}
 
@@ -215,8 +215,10 @@ void Simulation_Information::entranceArrive(void)
 	arrayOfCars[carsCounter].entranceArrivalTime = timeOfNextEvent[1];
 
 	if (parked == parkingLotSpots.size())
+	{
 		timeOfNextEvent[1] = simulationTime + arrivalRate;
-
+		std::cout << "Lot full**************************************************************************************";
+	}
 	// Check to see whether server is busy.
 	else if (entranceServerStatus == BUSY) 
 	{
@@ -303,7 +305,7 @@ void Simulation_Information::entranceDepart(void)
 			arrayOfCars[tempCarNumber].timeSpentLooking += 30.0f;
 
 			// Randomize Parking Spot
-			lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots - 1));
+			lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots));
 
 		} while (parkingLotSpots[lotIndex] <= EMPTY); // Try again if spot was taken
 

@@ -1,80 +1,80 @@
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-0, 65.5047, 64.9484, 4, 1, 18, 82.9484, 142.948
+0, 40.9824, 62.6654, 0, 1, 11.6, 74.2654, 134.265
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-1, 121.258, 124.948, 3, 1, 14.8, 139.748, 199.748
+1, 48.7412, 122.665, 1, 1, 11.6, 134.265, 194.265
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-2, 127.081, 184.948, 1, 1, 11.6, 196.548, 256.548
+2, 110.704, 182.665, 0, 1, 11.6, 194.265, 254.265
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-3, 160.713, 244.948, 4, 1, 18, 262.948, 322.948
+3, 143.853, 242.665, 2, 1, 14.8, 257.465, 317.465
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-4, 217.162, 304.948, 2, 1, 14.8, 319.748, 379.748
+4, 176.145, 302.665, 1, 1, 11.6, 314.265, 374.265
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-5, 238.472, 364.948, 2, 1, 14.8, 379.748, 439.748
+5, 192.212, 362.665, 2, 1, 14.8, 377.465, 437.465
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-6, 265.148, 424.948, 3, 1, 14.8, 439.748, 499.748
+6, 249.465, 422.665, 2, 1, 14.8, 437.465, 497.465
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-7, 316.836, 484.948, 6, 1, 21.2, 506.148, 566.148
+7, 282.603, 482.665, 2, 1, 14.8, 497.465, 557.465
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-8, 348.976, 544.948, 5, 1, 18, 562.948, 622.948
+8, 344.729, 542.665, 1, 1, 11.6, 554.265, 614.265
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-9, 411.042, 604.948, 6, 1, 21.2, 626.148, 686.148
+9, 350.431, 602.665, 1, 1, 11.6, 614.265, 674.265
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-10, 423.013, 664.948, 0, 1, 11.6, 676.548, 736.548
+10, 384.894, 662.665, 0, 1, 11.6, 674.265, 734.265
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-11, 460.792, 724.948, 4, 1, 18, 742.948, 802.948
+11, 443.13, 722.665, 2, 1, 14.8, 737.465, 797.465
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-12, 499.564, 784.948, 4, 1, 18, 802.948, 862.948
+12, 489.838, 782.665, 2, 1, 14.8, 797.465, 857.465
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-13, 554.249, 844.948, 7, 1, 21.2, 866.148, 926.148
+13, 535.672, 842.665, 0, 1, 11.6, 854.265, 914.265
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-14, 565.626, 904.948, 6, 1, 21.2, 926.148, 986.148
+14, 557.36, 902.665, 0, 1, 11.6, 914.265, 974.265
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-15, 609.123, 964.948, 5, 1, 18, 982.948, 1042.95
+15, 596.308, 962.665, 2, 1, 14.8, 977.465, 1037.47
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-16, 633.904, 1024.95, 6, 1, 21.2, 1046.15, 1106.15
+16, 606.451, 1022.67, 1, 1, 11.6, 1034.27, 1094.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-17, 671.386, 1084.95, 1, 1, 11.6, 1096.55, 1156.55
+17, 612.434, 1082.67, 0, 1, 11.6, 1094.27, 1154.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-18, 705.737, 1144.95, 2, 1, 14.8, 1159.75, 1219.75
+18, 634.961, 1142.67, 0, 1, 11.6, 1154.27, 1214.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-19, 770.271, 1204.95, 7, 1, 21.2, 1226.15, 1286.15
+19, 645.807, 1202.67, 0, 1, 11.6, 1214.27, 1274.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-20, 825.094, 1264.95, 3, 1, 14.8, 1279.75, 1339.75
+20, 656.769, 1262.67, 1, 1, 11.6, 1274.27, 1334.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-21, 825.098, 1324.95, 3, 1, 14.8, 1339.75, 1399.75
+21, 715.368, 1322.67, 0, 1, 11.6, 1334.27, 1394.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-22, 849.003, 1384.95, 6, 1, 21.2, 1406.15, 1466.15
+22, 734.072, 1382.67, 0, 1, 11.6, 1394.27, 1454.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-23, 861.001, 1444.95, 8, 1, 24.4, 1469.35, 1529.35
+23, 760.255, 1442.67, 0, 1, 11.6, 1454.27, 1514.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-24, 898.52, 1504.95, 4, 1, 18, 1522.95, 1582.95
+24, 781.782, 1502.67, 1, 1, 11.6, 1514.27, 1574.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-25, 941.348, 1564.95, 7, 1, 21.2, 1586.15, 1646.15
+25, 798.453, 1562.67, 1, 1, 11.6, 1574.27, 1634.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-26, 1012.09, 1624.95, 6, 1, 21.2, 1646.15, 1706.15
+26, 848.335, 1622.67, 1, 1, 11.6, 1634.27, 1694.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-27, 1042.59, 1684.95, 7, 1, 21.2, 1706.15, 1766.15
+27, 852.868, 1682.67, 1, 1, 11.6, 1694.27, 1754.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-28, 1102.42, 1744.95, 8, 1, 24.4, 1769.35, 1829.35
+28, 858.898, 1742.67, 0, 1, 11.6, 1754.27, 1814.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-29, 1158.62, 1804.95, 3, 1, 14.8, 1819.75, 1879.75
+29, 917.865, 1802.67, 1, 1, 11.6, 1814.27, 1874.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-30, 1220.41, 1864.95, 5, 1, 18, 1882.95, 1942.95
+30, 917.894, 1862.67, 2, 1, 14.8, 1877.47, 1937.47
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-31, 1269.52, 1924.95, 8, 1, 24.4, 1949.35, 2009.35
+31, 938.265, 1922.67, 0, 1, 11.6, 1934.27, 1994.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-32, 1334.22, 1984.95, 3, 1, 14.8, 1999.75, 2059.75
+32, 985.222, 1982.67, 2, 1, 14.8, 1997.47, 2057.47
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-33, 1355.43, 2044.95, 1, 1, 11.6, 2056.55, 2116.55
+33, 1001.74, 2042.67, 2, 1, 14.8, 2057.47, 2117.47
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-34, 1388.03, 2104.95, 5, 1, 18, 2122.95, 2182.95
+34, 1020.1, 2102.67, 0, 1, 11.6, 2114.27, 2174.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-35, 1416.98, 2164.95, 1, 1, 11.6, 2176.55, 2236.55
+35, 1033.29, 2162.67, 1, 1, 11.6, 2174.27, 2234.27
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-36, 1451.24, 2224.95, 2, 1, 14.8, 2239.75, 2299.75
+36, 1098.99, 2222.67, 2, 1, 14.8, 2237.47, 2297.47
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-37, 1518.99, 2284.95, 3, 1, 14.8, 2299.75, -1.07374e+08
+37, 1125.3, 2282.67, 1, 1, 11.6, 2294.27, -1.07374e+08
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-38, 1531.96, 2344.95, 0, 1, -1.07374e+08, -1.07374e+08, -1.07374e+08
+38, 1171.66, 2342.67, 1, 1, -1.07374e+08, -1.07374e+08, -1.07374e+08
 Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time
-39, 1545.5, -1.07374e+08, -858993460, 0, -1.07374e+08, -1.07374e+08, -1.07374e+08
+39, 1225.67, -1.07374e+08, -858993460, 0, -1.07374e+08, -1.07374e+08, -1.07374e+08
