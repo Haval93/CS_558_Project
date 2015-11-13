@@ -85,7 +85,7 @@ public:
 	// Statistical Counter Variables
 	int nextEventType, numberOfCustomersDelayed, totalNumberOfCustomers,
 		numberInEntranceQueue, numberInExitQueue, entranceServerStatus, leavingIndex,
-		exitServerStatus, maxEntranceQueueSize, maxExitQueueSize, parked;
+		exitServerStatus, maxEntranceQueueSize, maxExitQueueSize, parked, amountOfCustomersLeft;
 	float totalEntranceQueueDelayTime, totalExitQueueDelayTime, nextLeavingCar, timeSinceLastEvent,
 		areaUnderEntranceQueue, areaUnderExitQueue, areaEntranceServerStatus, areaExitServerStatus, totalSearchTime, exitTime;
 
