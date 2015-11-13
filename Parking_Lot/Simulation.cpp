@@ -154,7 +154,7 @@ void Simulation_Information::timing(void)
 			// Set Time Of Last Event To Simulation 
 			timeOfLastEvent = simulationTime;
 			// Set Simulation Time To The Next Event
-			// simulationTime = timeOfNextEvent[i];
+			 simulationTime = timeOfNextEvent[i];
 
 		}
 	}
@@ -421,12 +421,15 @@ void Simulation_Information::exitArrive()
 		the results of the simulation.) */
 		totalExitQueueDelayTime += simulationTime - timeOfLastEvent;
 
+		Car temp = exitQueue.front();
+
 		// Increment the number of customers delayed, and make server busy.
 		if (exitQueue.size() != 0)
 			exitServerStatus = BUSY;
 
+
 		// Schedule a departure (service completion).
-		timeOfNextEvent[5] = simulationTime + arrivalRate;
+		timeOfNextEvent[5] = temp.exitArrivalTime + arrivalRate;
 }
 
 
