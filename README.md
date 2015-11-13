@@ -81,12 +81,14 @@ Extra Features:
 	The main extra feature we have is the car objects. Because we make car objects we can now print out every cars information so if the user wants to focus on something that we are not they are able to do that. 
 	We also made it so that cars farther away from the exit gate will take longer to get to the exit gate. So cars who are close will take seconds to get to the exit and it grows the farther away you go from the exit. So each spot takes different times to get to the exit. 
 	We have data being printed after every 10 cars have left the system we are outputting statistical data. That way if the user wants to look at the data real time they can. 
-	We also set it up so that if the user enters a huge number of cars in the system and decides half way through they would like to end the simulation if they press the "esc" button the simulation will end. 
+	We also set it up so that if the user wants to pause the simulation they can click the left mouse button. to resume the simulation they can press the space bar. For this extra functionality the program has to be run on a windows. We tired it on windows 7 and it didnt work and we also did it on windows 10 and it worked. 
+	When the program is run it will output all the data in a cvs file for the convience of the user to plot, compare, and store the data. To find the cvs file the user will run the program and then in his windows explorer go to the folder that has that the program was saved to. The user will then go into the Parking_Lot and double click it. the .csv file is called CarData.csv. This file will be over written everytime the user runs the program. If the user wants to save their data they can move the file to a different location so it will not be overwritten.
+	
 	
 	
 
 Known bugs: 
-	It can be a bug or design choice but we decided it is better to end the system after certain number of people go through the entrance service so people are still in the system while the simulation ends. 
+	It can be a bug or design choice but we decided it is better to end the system after certain number of people go through the entrance service so people are still in the system while the simulation ends. Some of our extra features does not work on all computers. 
 	
 
 Lessons Learned:
