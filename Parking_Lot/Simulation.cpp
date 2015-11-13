@@ -479,10 +479,13 @@ void Simulation_Information::updateAverageTimeStats(void)
 	// Update area under number-in-queue function.
 	areaUnderEntranceQueue += entranceQueue.size() * timeSinceLastEvent;
 	areaUnderExitQueue += exitQueue.size() * timeSinceLastEvent;
+	std::cout << "Area under entrance queue: " << areaUnderEntranceQueue << std::endl;
+	std::cout << "Area under exit queue: " << areaUnderExitQueue << std::endl;
 
 	// Update area under server-busy indicator function.
 	areaEntranceServerStatus += entranceServerStatus * timeSinceLastEvent;
 	areaExitServerStatus += exitServerStatus * timeSinceLastEvent;
+	std::cout << "Area under entrance server: " << areaUnderEntranceQueue << std::endl;
 }
 
 
