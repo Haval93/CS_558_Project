@@ -109,6 +109,9 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 
 		// Assign A Car Number To Each Car
 		arrayOfCars[i].carNumber = i;
+
+		// Set All Value To Zero
+		arrayOfCars[i].numberOfTimesLooked = 0;
 	}
 	
 	// Initialize event list. Since no customers are present, the departure (service completion) event is eliminated from consideration
@@ -291,7 +294,7 @@ void Simulation_Information::entranceDepart(void)
 		do
 		{
 			// Car Count of number of times took to find 
-			arrayOfCars[tempCarNumber].numberOfTimesLooked++;
+			arrayOfCars[tempCarNumber].numberOfTimesLooked += 1;
 			
 			// Increment Time Spent Looking By 30 Each Time It Looks For a New Spot
 			arrayOfCars[tempCarNumber].timeSpentLooking += 30.0f;
@@ -299,7 +302,7 @@ void Simulation_Information::entranceDepart(void)
 			// Randomize Parking Spot
 			lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots - 1));
 
-		} while (parkingLotSpots[lotIndex] <= EMPTY); // Try again if spot was taken
+		} while (parkingLotSpots[lotIndex] != EMPTY); // Try again if spot was taken
 
 		
 		// Assign Parking Spot To Car
@@ -524,15 +527,16 @@ void Simulation_Information::report(void)
 		std::cout << "Car Entrance Arrival Time:  " << arrayOfCars[i].entranceArrivalTime << std::endl;
 		std::cout << "Car Entrance Depart Time:  " << arrayOfCars[i].entranceDepartTime << std::endl;
 		std::cout << "Car Parking Spot: " << arrayOfCars[i].parkingSpotLocation << std::endl;
+		std::cout << "Number Of Times Looked For Parking Spot: " << arrayOfCars[i].numberOfTimesLooked << std::endl;
 		std::cout << "Car Parking To Exit Gate Time: " << arrayOfCars[i].exitTimeCar << std::endl;
 		std::cout << "Car Exit Arrival Time: " << arrayOfCars[i].exitArrivalTime << std::endl;
 		std::cout << "Car Exit Depart Time: " << arrayOfCars[i].exitDepartTime << std::endl;
 
 		// Let's Output All The Car Data To An CSV File
-		outPutData << "Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time" << std::endl;
+		outPutData << "Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Number Of Times Looked, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time" << std::endl;
 		outPutData << arrayOfCars[i].carNumber << ", " << arrayOfCars[i].entranceArrivalTime << ", "
 			<< arrayOfCars[i].entranceDepartTime << ", " << arrayOfCars[i].parkingSpotLocation << ", "
-			<< arrayOfCars[i].exitTimeCar << ", " << arrayOfCars[i].exitArrivalTime << ", "
+			<< arrayOfCars[i].numberOfTimesLooked << ", " << arrayOfCars[i].exitTimeCar << ", " << arrayOfCars[i].exitArrivalTime << ", "
 			<< arrayOfCars[i].exitDepartTime << std::endl;
 
 	}
