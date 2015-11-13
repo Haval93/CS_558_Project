@@ -56,10 +56,10 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	{
 		// Default Initialization Variables.
 		parkingSpots = 10;
-		numberOfCars = 60;
+		numberOfCars = 40;
 		arrivalRate = 60;
-		parkIntervalHigh = 120;
-		parkIntervalLow = 60;
+		parkIntervalHigh = 180;
+		parkIntervalLow = 100;
 		exitGate = 60;
 	}
 
@@ -214,11 +214,15 @@ void Simulation_Information::entranceArrive(void)
 	// Need To Make Sure Ever Car have to make the next car entracearrivaltime to timeOfNextEvent[1]
 	arrayOfCars[carsCounter].entranceArrivalTime = timeOfNextEvent[1];
 
+	if (parked == parkingLotSpots.size())
+		timeOfNextEvent[1] = simulationTime + arrivalRate;
+
 	// Check to see whether server is busy.
-	if (entranceServerStatus == BUSY) 
+	else if (entranceServerStatus == BUSY) 
 	{
 		// If The Server is Busy Add The Car Into The Entrace Queue
 		entranceQueue.push(arrayOfCars[carsCounter]);
+		carsCounter++;
 	}
 	else 
 	{
@@ -239,10 +243,9 @@ void Simulation_Information::entranceArrive(void)
 
 		// Put Car Into The Entrance Queue
 		entranceQueue.push(arrayOfCars[carsCounter]);
-	}
 
-	// Increment Cars Counter
-	carsCounter++;
+		carsCounter++;
+	}
 }
 
 
@@ -302,7 +305,7 @@ void Simulation_Information::entranceDepart(void)
 			// Randomize Parking Spot
 			lotIndex = static_cast <int>((static_cast <float> (rand()) / static_cast <float> (RAND_MAX)) * (parkingSpots - 1));
 
-		} while (parkingLotSpots[lotIndex] != EMPTY); // Try again if spot was taken
+		} while (parkingLotSpots[lotIndex] <= EMPTY); // Try again if spot was taken
 
 		
 		// Assign Parking Spot To Car
@@ -321,6 +324,8 @@ void Simulation_Information::entranceDepart(void)
 	// Updates Element Time For That Parking Spot
 	parkingLotSpots[lotIndex] = simulationTime + singleCarSearchTime + parkTime;
 
+
+	
 	// Determine the time of the next car to leave a spot
 	for (int i = 0; i <= parkingSpots - 1; i++)
 	{
