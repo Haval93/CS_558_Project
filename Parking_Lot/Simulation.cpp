@@ -55,7 +55,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	else
 	{
 		// Default Initialization Variables.
-		parkingSpots = 60;
+		parkingSpots = 10;
 		numberOfCars = 60;
 		arrivalRate = 60;
 		parkIntervalHigh = 120;
