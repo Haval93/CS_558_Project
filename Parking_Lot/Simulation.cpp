@@ -489,7 +489,7 @@ void Simulation_Information::updateAverageTimeStats(void)
 	statsData.open("SimulationStats.csv", std::ofstream::out | std::ofstream::app);
 
 	// Write Simulation Time, Entrance Queue Size, Exit Queue Size, Area Under Entrance Queue, Area Under Exit Queue
-	statsData << "Simulation Time, Entrance Queue Size, Exit Queue Size, Area Under Entrance Queue, Area Under Exit Queue" << std::endl;
+	// statsData << "Simulation Time, Entrance Queue Size, Exit Queue Size, Area Under Entrance Queue, Area Under Exit Queue" << std::endl;
 
 	// Get All Data
 	statsData << simulationTime << ", " << entranceQueue.size() << ", " << exitQueue.size() << ", "
@@ -538,7 +538,8 @@ void Simulation_Information::report(void)
 
 	// Open CSV File
 	outPutData.open("CarData.csv", std::ofstream::out);
-
+	// Let's Output All The Car Data To An CSV File
+	outPutData << "Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Car Exit Arrival Time, Car Exit Gate Time, Car Exit Depart Time" << std::endl;
 
 	for (int i = 0; i < totalNumberOfCustomers; i++)
 	{
@@ -549,9 +550,8 @@ void Simulation_Information::report(void)
 		std::cout << "Car Parking To Exit Gate Time: " << arrayOfCars[i].exitTimeCar << std::endl;
 		std::cout << "Car Exit Arrival Time: " << arrayOfCars[i].exitArrivalTime << std::endl;
 		std::cout << "Car Exit Depart Time: " << arrayOfCars[i].exitDepartTime << std::endl << std::endl;
-
-		// Let's Output All The Car Data To An CSV File
-		outPutData << "Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Car Exit Arrival Time, Car Exit Gate Time, Car Exit Depart Time" << std::endl;
+		
+		// Adds Data
 		outPutData << arrayOfCars[i].carNumber << ", " << arrayOfCars[i].entranceArrivalTime << ", "
 			<< arrayOfCars[i].entranceDepartTime << ", " << arrayOfCars[i].parkingSpotLocation << ", "
 			<< arrayOfCars[i].exitArrivalTime << ", " << arrayOfCars[i].exitTimeCar << ", " << arrayOfCars[i].exitDepartTime << ", "
