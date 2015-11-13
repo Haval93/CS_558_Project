@@ -88,6 +88,7 @@ Simulation_Information::Simulation_Information(int argc, char * argv[])
 	areaEntranceServerStatus = 0.0;
 	areaExitServerStatus = 0.0;
 	exitTime = 0.0;
+	amountOfCustomersLeft = 0;
 
 	// Make Parking Spot Array The Correct Size
 	parkingLotSpots.resize(parkingSpots);
@@ -461,6 +462,9 @@ void Simulation_Information::exitDepart(void)
 
 		// Pop The Car Off The Queue and It Has Left The Simulation
 		exitQueue.pop();
+
+		// Increment The Number Of Customers That Have Left
+		amountOfCustomersLeft++;
 	}
 }
 
@@ -471,6 +475,8 @@ void Simulation_Information::updateAverageTimeStats(void)
 	std::cout << "Current Simulation Time: " << simulationTime << std::endl;
 	std::cout << "Current Entrance Queue Size: " << entranceQueue.size() << std::endl;
 	std::cout << "Current Exit Queue Size: " << exitQueue.size() << std::endl;
+	std::cout << "Current Customers In The System: " << (carsCounter - amountOfCustomersLeft) << std::endl;
+
 
 	// Compute time since last event, and update last-event-time marker. 
 	timeSinceLastEvent = simulationTime - timeOfLastEvent;
