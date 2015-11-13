@@ -510,20 +510,37 @@ void Simulation_Information::updateAverageTimeStats(void)
 // Report Statisical Data
 void Simulation_Information::report(void)
 {
+
+	// Create An Output CSV File For All The Cars
+	std::ofstream outPutData;
+
+	// Open CSV File
+	outPutData.open("CarData.csv", std::ofstream::out);
+
+
 	for (int i = 0; i < totalNumberOfCustomers; i++)
 	{
-		std::cout << "Car Number: " << arrayOfCars[i].carNumber;
-		std::cout << "Car Entrance Arrival Time:  " << arrayOfCars[i].entranceArrivalTime;
-		std::cout << "Car Entrance Depart Time:  " << arrayOfCars[i].entranceDepartTime;
-		std::cout << "Car Parking Spot: " << arrayOfCars[i].parkingSpotLocation;
-		std::cout << "Car Parking To Exit Gate Time: " << arrayOfCars[i].exitTimeCar;
-		std::cout << "Car Exit Arrival Time: " << arrayOfCars[i].exitArrivalTime;
+		std::cout << "Car Number: " << arrayOfCars[i].carNumber << std::endl;
+		std::cout << "Car Entrance Arrival Time:  " << arrayOfCars[i].entranceArrivalTime << std::endl;
+		std::cout << "Car Entrance Depart Time:  " << arrayOfCars[i].entranceDepartTime << std::endl;
+		std::cout << "Car Parking Spot: " << arrayOfCars[i].parkingSpotLocation << std::endl;
+		std::cout << "Car Parking To Exit Gate Time: " << arrayOfCars[i].exitTimeCar << std::endl;
+		std::cout << "Car Exit Arrival Time: " << arrayOfCars[i].exitArrivalTime << std::endl;
 		std::cout << "Car Exit Depart Time: " << arrayOfCars[i].exitDepartTime << std::endl;
+
+		// Let's Output All The Car Data To An CSV File
+		outPutData << "Car Number, Car Entrance Arrival Time, Car Entrance Depart Time, Car Parking Spot, Car Exit Gate Time, Car Exit Arrival Time, Car Exit Depart Time" << std::endl;
+		outPutData << arrayOfCars[i].carNumber << ", " << arrayOfCars[i].entranceArrivalTime << ", "
+			<< arrayOfCars[i].entranceDepartTime << ", " << arrayOfCars[i].parkingSpotLocation << ", "
+			<< arrayOfCars[i].exitTimeCar << ", " << arrayOfCars[i].exitArrivalTime << ", "
+			<< arrayOfCars[i].exitDepartTime << std::endl;
 
 	}
 
-	std::cout << "total entrance delay queue time: " << totalEntranceQueueDelayTime << std::endl;
-	std::cout << "total exit delay queue time: " << totalExitQueueDelayTime << std::endl;
+	std::cout << "Total Entrance Delay Queue Time: " << totalEntranceQueueDelayTime << std::endl;
+	std::cout << "Total Exit Delay Queue Time: " << totalExitQueueDelayTime << std::endl;
+
+	outPutData.close();
 }
 
 

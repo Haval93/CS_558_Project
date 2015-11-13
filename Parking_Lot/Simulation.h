@@ -15,6 +15,7 @@ Geoff Crews
 #include <fstream>
 #include <vector>
 #include <queue>
+#include <iomanip>
 
 #ifndef Simulation
 #define Simulation
