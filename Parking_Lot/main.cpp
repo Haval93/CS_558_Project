@@ -37,7 +37,7 @@ int main(int argc, char * argv[])
 		firstSimulation.timing();
 
 		// Update Average Stats Ever 10 Customers 
-		if (firstSimulation.numberOfCustomersDelayed % 5 == 0)
+		if (firstSimulation.numberOfCustomersDelayed % 10 == 0)
 		{
 			// Update time-average statistical accumulators. 
 			firstSimulation.updateAverageTimeStats();

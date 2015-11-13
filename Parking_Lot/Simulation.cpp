@@ -468,6 +468,9 @@ void Simulation_Information::exitDepart(void)
 void Simulation_Information::updateAverageTimeStats(void)
 {
 	// Show Simulation Time, Last Event Time, Update Queue Sizes. Get Some Area Under Curve Statistics 
+	std::cout << "Current Simulation Time: " << simulationTime << std::endl;
+	std::cout << "Current Entrance Queue Size: " << entranceQueue.size() << std::endl;
+	std::cout << "Current Exit Queue Size: " << exitQueue.size() << std::endl;
 
 	// Compute time since last event, and update last-event-time marker. 
 	timeSinceLastEvent = simulationTime - timeOfLastEvent;
