@@ -69,6 +69,7 @@ the user then opens visual studios and goes to project, parkinglot properties. O
 
 Design Choices: 
 The program has been updated. The code has been refactored completely and has been moved for easier readability. New variables that define what they are used for has been made and redundant code and variables have been taken out. 
+we decided that we will stop the simulation after so many people get to the entrance service the simulation will end. This though will make it so the last few people in the parking lot will not have the correct numbers for when they exit the system. We thought about changing it so that we will end the program after the number of customers exit the system but after much debate the team decided that it we are ultimatly after the entrance queue instead of the exit queue. 
 
 The program now is able to read in from a file. the user can change the vairbales in the file and run the program with those insteaad. 
 
@@ -84,8 +85,9 @@ Extra Features:
 	
 	
 
-Known bugs:
-	We currently have no known bugs at this time. With enough time bugs will come up and depending on the user data bugs might come up. after hours testing though no bugs are currently found. 
+Known bugs: 
+	It can be a bug or design choice but we decided it is better to end the system after certain number of people go through the entrance service so people are still in the system while the simulation ends. 
+	
 
 Lessons Learned:
 We learned how important it is to make car objects in terms of debugging. We also learned that most of the old code was redundant and should be deleted. We found better ways to do program the simulation making it sleaker and more efficient code. Most of the lessons learned were personal lessons in working in a big group. This program would have been better if the group was 2-3 people. Having a larger group allowed for some people to not code as much as others. Also still some people would not learn git to push and pull the code from the repository and instead emailing the code. This makes it harder to track the changes. This would not be as much of an issue if they could show up for pair programming. Although some group members would not show up for it. If we were given the chance to redo the program we would choose a team of two or three instead. 
