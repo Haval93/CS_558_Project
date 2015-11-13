@@ -220,7 +220,7 @@ void Simulation_Information::entranceArrive(void)
 	else 
 	{
 		// Server is idle, so arriving customer has a delay of zero. 
-		totalEntranceQueueDelayTime = simulationTime - timeOfLastEvent;
+		totalEntranceQueueDelayTime += simulationTime - timeOfLastEvent;
 
 		// Increment the number of customers delayed.
 		numberOfCustomersDelayed++;
@@ -272,7 +272,7 @@ void Simulation_Information::entranceDepart(void)
 		int tempCarNumber = nextCarInLine.carNumber;
 
 		// Compute the delay of the customer who is beginning service and update the total delay accumulator 
-		totalEntranceQueueDelayTime = simulationTime - nextCarInLine.entranceArrivalTime;
+		totalEntranceQueueDelayTime += simulationTime - nextCarInLine.entranceArrivalTime;
 
 		// Increment the number of customers delayed
 		numberOfCustomersDelayed++;
@@ -447,15 +447,14 @@ void Simulation_Information::exitDepart(void)
 
 	else
 	{
-		// Compute the delay of the customer who is beginning service and update
-		// the total delay accumulator.
-		// totalExitQueueDelayTime = simulationTime - exitQueue.car.exitarrivalTime;
 
 		// Increment the number of customers delayed, and schedule departure.
 		timeOfNextEvent[5] = simulationTime + exitGate;
 
 		// Get The Next Car Object In The Queue
 		Car carObject = exitQueue.front();
+
+		totalExitQueueDelayTime += simulationTime - carObject.exitArrivalTime;
 
 		// Temp Variable To Get It's Number
 		int temp = carObject.carNumber;
@@ -504,6 +503,7 @@ void Simulation_Information::updateAverageTimeStats(void)
 		std::cout << "Area under entrance server: " << areaEntranceServerStatus << std::endl;
 		std::cout << "Area under exit server: " << areaExitServerStatus << std::endl;
 	}
+
 }
 
 
@@ -521,6 +521,9 @@ void Simulation_Information::report(void)
 		std::cout << "Car Exit Depart Time: " << arrayOfCars[i].exitDepartTime << std::endl;
 
 	}
+
+	std::cout << "total entrance delay queue time: " << totalEntranceQueueDelayTime << std::endl;
+	std::cout << "total exit delay queue time: " << totalExitQueueDelayTime << std::endl;
 }
 
 
