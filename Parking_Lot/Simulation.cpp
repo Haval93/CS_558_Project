@@ -471,12 +471,14 @@ void Simulation_Information::exitDepart(void)
 // Update Average Time Stats
 void Simulation_Information::updateAverageTimeStats(void)
 {
-	// Show Simulation Time, Last Event Time, Update Queue Sizes. Get Some Area Under Curve Statistics 
-	std::cout << "Current Simulation Time: " << simulationTime << std::endl;
-	std::cout << "Current Entrance Queue Size: " << entranceQueue.size() << std::endl;
-	std::cout << "Current Exit Queue Size: " << exitQueue.size() << std::endl;
-	std::cout << "Current Customers In The System: " << (carsCounter - amountOfCustomersLeft) << std::endl;
-
+	if (numberOfCustomersDelayed % 10 == 0)
+	{
+		// Show Simulation Time, Last Event Time, Update Queue Sizes. Get Some Area Under Curve Statistics 
+		std::cout << "Current Simulation Time: " << simulationTime << std::endl;
+		std::cout << "Current Entrance Queue Size: " << entranceQueue.size() << std::endl;
+		std::cout << "Current Exit Queue Size: " << exitQueue.size() << std::endl;
+		std::cout << "Current Customers In The System: " << (carsCounter - amountOfCustomersLeft) << std::endl;
+	}
 
 	// Compute time since last event, and update last-event-time marker. 
 	timeSinceLastEvent = simulationTime - timeOfLastEvent;
@@ -485,13 +487,20 @@ void Simulation_Information::updateAverageTimeStats(void)
 	// Update area under number-in-queue function.
 	areaUnderEntranceQueue += entranceQueue.size() * timeSinceLastEvent;
 	areaUnderExitQueue += exitQueue.size() * timeSinceLastEvent;
-	std::cout << "Area under entrance queue: " << areaUnderEntranceQueue << std::endl;
-	std::cout << "Area under exit queue: " << areaUnderExitQueue << std::endl;
+	if (numberOfCustomersDelayed % 10 == 0)
+	{
+		std::cout << "Area under entrance queue: " << areaUnderEntranceQueue << std::endl;
+		std::cout << "Area under exit queue: " << areaUnderExitQueue << std::endl;
+	}
 
 	// Update area under server-busy indicator function.
 	areaEntranceServerStatus += entranceServerStatus * timeSinceLastEvent;
 	areaExitServerStatus += exitServerStatus * timeSinceLastEvent;
-	std::cout << "Area under entrance server: " << areaUnderEntranceQueue << std::endl;
+	if (numberOfCustomersDelayed % 10 == 0)
+	{
+		std::cout << "Area under entrance server: " << areaEntranceServerStatus << std::endl;
+		std::cout << "Area under exit server: " << areaExitServerStatus << std::endl;
+	}
 }
 
 

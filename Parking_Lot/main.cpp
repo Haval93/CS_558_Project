@@ -36,12 +36,9 @@ int main(int argc, char * argv[])
 		// Timing Function To Determine The Next Event
 		firstSimulation.timing();
 
-		// Update Average Stats Ever 10 Customers 
-		if (firstSimulation.numberOfCustomersDelayed % 10 == 0)
-		{
-			// Update time-average statistical accumulators. 
-			firstSimulation.updateAverageTimeStats();
-		}
+		// Update time-average statistical accumulators. 
+		firstSimulation.updateAverageTimeStats();
+		
 
 		// Check For Key Press
 		if (GetAsyncKeyState(VK_ESCAPE))
