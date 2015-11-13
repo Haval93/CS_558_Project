@@ -154,7 +154,7 @@ void Simulation_Information::timing(void)
 			// Set Time Of Last Event To Simulation 
 			timeOfLastEvent = simulationTime;
 			// Set Simulation Time To The Next Event
-			 simulationTime = timeOfNextEvent[i];
+			// simulationTime = timeOfNextEvent[i];
 
 		}
 	}
